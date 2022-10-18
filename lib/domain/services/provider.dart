@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 /* 
 for http response
 import 'package:superclean/domain/models/character_model.dart';

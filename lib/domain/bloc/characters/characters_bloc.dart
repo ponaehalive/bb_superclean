@@ -6,23 +6,25 @@ import 'package:superclean/domain/services/characters_repository.dart';
 
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final CharacterRepository characterRepository = CharacterRepository();
-  CharactersBloc() : super(CharactersState(loadedCharacter: [], isLoadind: false)) {
+  CharactersBloc() : super(CharactersState.initial) {
     on<CharactersLoadEvent>(
       (event, emit) async {
-        emit(CharactersState(
-          loadedCharacter: [],
-          isLoadind: true,
-        ));
+        emit(
+          CharactersState(
+            loadedCharacter: [],
+            isLoadind: true,
+          ),
+        );
 
-        try {
+        {
           final List<CharacterModel> loadedCharactersList =
               await characterRepository.getAllCharacters();
-          emit(CharactersState(
-            loadedCharacter: loadedCharactersList,
-            isLoadind: false,
-          ));
-        } catch (_) {
-          //emit(CharactersErrorState());
+          emit(
+            CharactersState(
+              loadedCharacter: loadedCharactersList,
+              isLoadind: false,
+            ),
+          );
         }
       },
     );
