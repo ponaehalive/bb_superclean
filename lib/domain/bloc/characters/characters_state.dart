@@ -1,21 +1,10 @@
-
-
 import 'package:superclean/domain/models/character_model.dart';
 
-abstract class CharactersState {}
-
-class CharactersEmptyState extends CharactersState {}
-
-class CharactersLoadingState extends CharactersState {}
-
-class CharactersLoadedState extends CharactersState {
-  List<CharacterModel> loadedCharacter;
-  CharactersLoadedState({
-    required this.loadedCharacter,
+class CharactersState {
+  List<CharacterModel>? loadedCharacter = [];
+  bool isLoadind = false;
+  CharactersState({
+    this.loadedCharacter,
+    required this.isLoadind,
   });
 }
-
-class CharactersErrorState extends CharactersState {}
-
-
-

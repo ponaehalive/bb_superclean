@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:superclean/domain/bloc/characters/characters_event.dart';
 import 'package:superclean/domain/bloc/characters/characters_state.dart';
@@ -7,24 +6,25 @@ import 'package:superclean/domain/services/characters_repository.dart';
 
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final CharacterRepository characterRepository = CharacterRepository();
-  CharactersBloc() : super(CharactersEmptyState()) {
+  CharactersBloc() : super(CharactersState(loadedCharacter: [], isLoadind: false)) {
     on<CharactersLoadEvent>(
       (event, emit) async {
-        emit(CharactersLoadingState());
+        emit(CharactersState(
+          loadedCharacter: [],
+          isLoadind: true,
+        ));
 
         try {
-          final List<CharacterModel> loadedCharactersList = await characterRepository.getAllCharacters();
-          emit(CharactersLoadedState(loadedCharacter: loadedCharactersList));
+          final List<CharacterModel> loadedCharactersList =
+              await characterRepository.getAllCharacters();
+          emit(CharactersState(
+            loadedCharacter: loadedCharactersList,
+            isLoadind: false,
+          ));
         } catch (_) {
-          emit(CharactersErrorState());
+          //emit(CharactersErrorState());
         }
       },
     );
-    on<CharactersClearEvent>(
-      (event, emit) async {
-        emit(CharactersEmptyState());
-      },
-    );
   }
-} 
-
+}

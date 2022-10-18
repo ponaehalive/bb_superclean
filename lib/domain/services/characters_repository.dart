@@ -6,7 +6,12 @@ import 'package:superclean/domain/services/provider.dart';
 class CharacterRepository {
   final Provider _provider = Provider();
   Future<List<CharacterModel>> getAllCharacters() async {
+
+
+    
     final characters = await _provider.getCharacters();
+
+
     print("characters Repository:$characters");
 
     final charactersList = characters
