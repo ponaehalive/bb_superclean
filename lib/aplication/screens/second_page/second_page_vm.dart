@@ -9,9 +9,7 @@ class SecondPageViewModel extends ChangeNotifier with BaseViewModel {
   final CharactersBloc _charactersBloc = CharactersBloc();
   StreamSubscription? _charactersBlocSubscription;
 
-  SecondPageViewModel(
-    
-  ) {
+  SecondPageViewModel() {
     _charactersBlocSubscription =
         _charactersBloc.stream.listen((_) => notifyListeners());
   }
@@ -22,19 +20,18 @@ class SecondPageViewModel extends ChangeNotifier with BaseViewModel {
     _charactersBlocSubscription?.cancel();
   }
 
-
   void init() {
-
     _charactersBloc.add(
       CharactersLoadEvent(),
     );
   }
-  
+
+  void clear() {
+    _charactersBloc.add(CharactersClearEvent());
+  }
+
   List<CharacterModel>? get allCharacters =>
-      _charactersBloc.state.loadedCharacter
-      ;
+      _charactersBloc.state.loadedCharacter;
 
-        bool get isCharactersLoading =>
-      _charactersBloc.state.isLoadind;
-
+  bool get isCharactersLoading => _charactersBloc.state.isLoadind;
 }

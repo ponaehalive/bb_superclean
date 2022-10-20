@@ -39,7 +39,9 @@ class _SecondPageState extends State<SecondPage> {
                         children: secondPageViewModel.allCharacters!
                             .map(
                               (character) => CharacterCardWidget(
-                                  character: character, onTap: () {}),
+                                character: character,
+                                onTap: () => secondPageViewModel.clear(),
+                              ),
                             )
                             .toList(),
                       ),
