@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
 import 'package:superclean/domain/models/character_model.dart';
 
@@ -19,18 +20,18 @@ class CharacterCardWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          // ignore: prefer_const_literals_to_create_immutables
-          boxShadow: [
-            const BoxShadow(
+         
+          boxShadow: const [
+             BoxShadow(
               blurRadius: 2.0,
               offset: Offset(
                 1.0,
                 1.0,
-              ), // shadow direction: bottom right
+              ), 
             )
           ],
           borderRadius: BorderRadius.circular(5),
-          // border: Border.all(color: Colors.green, width: 0.3),
+         
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
@@ -56,7 +57,9 @@ class CharacterCardWidget extends StatelessWidget {
                         child: Text(
                           character.name ?? '',
                           textAlign: TextAlign.center,
-                          
+                          style: const TextStyle(
+                            color: AppColors.primaryText
+                          ),
                         ),
                       ),
                     ),

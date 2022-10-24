@@ -12,7 +12,7 @@ class CharacterRepository {
     final characters = await _provider.getCharacters();
 
 
-    print("characters Repository:$characters");
+   // print("characters Repository:$characters");
 
     final charactersList = characters
         .map((character) => CharacterModel.fromJson(character))

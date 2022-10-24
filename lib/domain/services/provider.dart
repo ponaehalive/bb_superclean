@@ -21,6 +21,7 @@ class Provider {
       receiveDataWhenStatusError: true,
       connectTimeout: 60 * 1000, //60 seconds
       receiveTimeout: 60 * 1000,
+      sendTimeout: 10000,
     );
     dio = Dio(options);
     dio.interceptors.add(

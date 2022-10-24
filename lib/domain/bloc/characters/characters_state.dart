@@ -2,17 +2,20 @@ import 'package:superclean/domain/models/character_model.dart';
 
 class CharactersState {
   List<CharacterModel>? loadedCharacter;
-  bool isLoadind;
+  bool? isLoadind;
+  CharacterModel? selectedCharacter;
 
   CharactersState({
-    required this.loadedCharacter,
-    required this.isLoadind,
+    this.loadedCharacter,
+    this.isLoadind,
+    this.selectedCharacter,
   });
 
   static CharactersState get initial {
     return CharactersState(
       loadedCharacter: [],
       isLoadind: false,
+      selectedCharacter: CharacterModel(),
     );
   }
 }

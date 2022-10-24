@@ -32,7 +32,7 @@ class _$AppRouter extends RootStackRouter {
     SecondRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SecondPage(),
+        child: const CharactersPage(),
       );
     },
     ThirdRouter.name: (routeData) {
@@ -95,7 +95,7 @@ class FirstRouter extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SecondPage]
+/// [CharactersPage]
 class SecondRouter extends PageRouteInfo<void> {
   const SecondRouter()
       : super(

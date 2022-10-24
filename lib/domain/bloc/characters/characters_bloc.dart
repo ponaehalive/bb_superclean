@@ -11,7 +11,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       (event, emit) async {
         emit(
           CharactersState(
-            loadedCharacter: [],
+            
             isLoadind: true,
           ),
         );
@@ -26,6 +26,18 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
             ),
           );
         }
+      },
+    );
+    on<CharactersSelectEvent>(
+      (event, emit) async {
+       
+        emit(
+          CharactersState(
+            isLoadind: false,
+            selectedCharacter: event.selectedCharacter,
+          ),
+        );
+           
       },
     );
   }

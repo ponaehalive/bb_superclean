@@ -5,11 +5,11 @@ import 'package:superclean/domain/bloc/characters/characters_event.dart';
 import 'package:superclean/domain/models/character_model.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
-class SecondPageViewModel extends ChangeNotifier with BaseViewModel {
+class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
   final CharactersBloc _charactersBloc = CharactersBloc();
   StreamSubscription? _charactersBlocSubscription;
 
-  SecondPageViewModel() {
+  CharactersPageViewModel() {
     _charactersBlocSubscription =
         _charactersBloc.stream.listen((_) => notifyListeners());
   }
@@ -27,11 +27,18 @@ class SecondPageViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   void clear() {
-    _charactersBloc.add(CharactersClearEvent());
+    // _charactersBloc.add(CharactersClearEvent());
+  }
+
+  void selectCharacter(CharacterModel selectedCharacter) {
+    /*  print(selectedCharacter.nakeName); */
+    _charactersBloc.add(
+      CharactersSelectEvent(selectedCharacter: selectedCharacter),
+    );
   }
 
   List<CharacterModel>? get allCharacters =>
       _charactersBloc.state.loadedCharacter;
 
-  bool get isCharactersLoading => _charactersBloc.state.isLoadind;
+  bool get isCharactersLoading => _charactersBloc.state.isLoadind ?? false;
 }
