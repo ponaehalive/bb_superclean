@@ -20,6 +20,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
           final List<CharacterModel> loadedCharactersList =
               await characterRepository.getAllCharacters();
           emit(
+            
             CharactersState(
               loadedCharacter: loadedCharactersList,
               isLoadind: false,

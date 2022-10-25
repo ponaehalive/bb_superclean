@@ -15,8 +15,9 @@ class CharacterDetailsPage extends StatefulWidget {
 }
 
 class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
+  
   CharacterDeatilsViewModel characterDetailsViewModel =
-      CharacterDeatilsViewModel(CharactersBloc());
+      CharacterDeatilsViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,8 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
           child:
               Text(CharactersBloc().state.selectedCharacter.actorName ?? '555'),
           onPressed: () {
-            print(characterDetailsViewModel.selectedCharacter.actorName);
+           
+            
             print(CharactersBloc().state.loadedCharacter);
           },
         ),
