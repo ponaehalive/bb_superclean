@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:superclean/aplication/navigation/router.dart';
 import 'package:superclean/domain/bloc/characters/characters_bloc.dart';
 import 'package:superclean/domain/bloc/characters/characters_event.dart';
 import 'package:superclean/domain/models/character_model.dart';
@@ -26,19 +27,23 @@ class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
     );
   }
 
-  void clear() {
-    // _charactersBloc.add(CharactersClearEvent());
-  }
+  void clear() {}
 
   void selectCharacter(CharacterModel selectedCharacter) {
-    /*  print(selectedCharacter.nakeName); */
-    _charactersBloc.add(
+     _charactersBloc.add(
       CharactersSelectEvent(selectedCharacter: selectedCharacter),
     );
+   
+     
+    
   }
 
-  List<CharacterModel>? get allCharacters =>
-      _charactersBloc.state.loadedCharacter;
+  void goToCharacterInfoPage() {
+     
+  }
+
+  List<CharacterModel> get allCharacters =>
+      _charactersBloc.state.loadedCharacter ?? [];
 
   bool get isCharactersLoading => _charactersBloc.state.isLoadind ?? false;
 }

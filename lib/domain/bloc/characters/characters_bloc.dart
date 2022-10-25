@@ -11,8 +11,8 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       (event, emit) async {
         emit(
           CharactersState(
-            
             isLoadind: true,
+            selectedCharacter: CharacterModel(),
           ),
         );
 
@@ -23,6 +23,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
             CharactersState(
               loadedCharacter: loadedCharactersList,
               isLoadind: false,
+              selectedCharacter: CharacterModel(),
             ),
           );
         }
@@ -30,14 +31,15 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     );
     on<CharactersSelectEvent>(
       (event, emit) async {
-       
         emit(
           CharactersState(
             isLoadind: false,
             selectedCharacter: event.selectedCharacter,
           ),
         );
-           
+        // ignore: avoid_print
+        print('Selected character: ${state.selectedCharacter.actorName}');
+       
       },
     );
   }

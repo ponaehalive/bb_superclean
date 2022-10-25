@@ -5,7 +5,7 @@ abstract class CharactersEvent {}
 class CharactersLoadEvent extends CharactersEvent {}
 
 class CharactersSelectEvent extends CharactersEvent {
-  final CharacterModel? selectedCharacter;
+  final CharacterModel selectedCharacter;
   CharactersSelectEvent({
     required this.selectedCharacter,
   });

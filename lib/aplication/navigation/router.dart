@@ -13,11 +13,15 @@ AppRouter get router => AppRouter();
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(path: '/', page: HomePage, children: [
-      AutoRoute(path: 'first', name: 'FirstRouter', page: FirstPage),
-      AutoRoute(path: 'second', name: 'SecondRouter', page: CharactersPage),
-      AutoRoute(path: 'third', name: 'ThirdRouter', page: ThirdPage)
-    ])
+    AutoRoute(
+      path: '/',
+      page: HomePage,
+      children: [
+        AutoRoute(path: 'first', name: 'FirstRouter', page: FirstPage),
+        AutoRoute(path: 'second', name: 'SecondRouter', page: CharactersPage),
+        AutoRoute(path: 'third', name: 'ThirdRouter', page: ThirdPage)
+      ],
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}

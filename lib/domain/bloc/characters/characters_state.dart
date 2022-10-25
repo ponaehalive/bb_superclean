@@ -3,12 +3,12 @@ import 'package:superclean/domain/models/character_model.dart';
 class CharactersState {
   List<CharacterModel>? loadedCharacter;
   bool? isLoadind;
-  CharacterModel? selectedCharacter;
+  CharacterModel selectedCharacter;
 
   CharactersState({
     this.loadedCharacter,
     this.isLoadind,
-    this.selectedCharacter,
+    required this.selectedCharacter,
   });
 
   static CharactersState get initial {
