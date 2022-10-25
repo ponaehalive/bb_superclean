@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/screens/characters_page/characters_page_vm.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/widgets/character_card.dart';
@@ -23,7 +25,8 @@ class _CharactersPageState extends State<CharactersPage> {
         child: ChangeNotifierProvider<CharactersPageViewModel>(
           create: (_) => charactersPageViewModel..init(),
           child: Center(
-            child: charactersPageViewModel.selector<CharactersPageViewModel, bool?>(
+            child: charactersPageViewModel
+                .selector<CharactersPageViewModel, bool?>(
               selector: () => charactersPageViewModel.isCharactersLoading,
               builder: (ctx, _) {
                 return SizedBox(
@@ -39,12 +42,16 @@ class _CharactersPageState extends State<CharactersPage> {
                           mainAxisSpacing: 5,
                           crossAxisCount: 2,
                           padding: const EdgeInsets.all(0.0),
-                          children: charactersPageViewModel.allCharacters!
+                          children: charactersPageViewModel.allCharacters
                               .map(
                                 (character) => CharacterCardWidget(
                                   character: character,
-                                  onTap: () => charactersPageViewModel
-                                      .selectCharacter(character),
+                                  onTap: () {
+                                   
+                                    charactersPageViewModel
+                                        .selectCharacter(character, context);
+                                    
+                                  },
                                 ),
                               )
                               .toList(),

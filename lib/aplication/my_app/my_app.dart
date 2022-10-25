@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superclean/aplication/navigation/router.dart';
+import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/ui/themes/app_theme.dart';
 
 

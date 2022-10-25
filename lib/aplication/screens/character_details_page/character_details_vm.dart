@@ -10,15 +10,19 @@ import 'package:superclean/src/base_elements/base_view_model.dart';
 import 'package:superclean/src/utils/date_time_formatter.dart';
 
 class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
- final CharactersBloc _charactersBloc = CharactersBloc();
+  CharactersBloc charactersBloc ;
   StreamSubscription? _charactersBlocSubscription;
 
 
-
-CharacterDeatilsViewModel() {
-    _charactersBlocSubscription =
-        _charactersBloc.stream.listen((_) => notifyListeners());
+  CharacterDeatilsViewModel(
+    this.charactersBloc,
+  ) {
+    _charactersBlocSubscription = charactersBloc.stream.listen((_) {
+      notifyListeners();
+    });
   }
+
+
 
   @override
   void dispose() {
@@ -42,8 +46,8 @@ CharacterDeatilsViewModel() {
       //);
 
 
-   /*    CharacterModel? get selectedCharacter =>
-      _charactersBloc.state.selectedCharacter;
+      CharacterModel get selectedCharacter =>
+      charactersBloc.state.selectedCharacter;
 
 
        String? get birthDay {
@@ -53,5 +57,5 @@ CharacterDeatilsViewModel() {
           AppFormatter.AIRDATE_FORMAT);
     }
     return 'Unknown';
-  } */
+  } 
 }
