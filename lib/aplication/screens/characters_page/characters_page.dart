@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/screens/characters_page/characters_page_vm.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/widgets/character_card.dart';
@@ -16,6 +14,7 @@ class CharactersPage extends StatefulWidget {
 
 class _CharactersPageState extends State<CharactersPage> {
   CharactersPageViewModel charactersPageViewModel = CharactersPageViewModel();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,8 @@ class _CharactersPageState extends State<CharactersPage> {
                                 (character) => CharacterCardWidget(
                                   character: character,
                                   onTap: () {
-                                   
                                     charactersPageViewModel
-                                        .selectCharacter(character, context);
+                                        .selectCharacter(character);
                                     
                                   },
                                 ),

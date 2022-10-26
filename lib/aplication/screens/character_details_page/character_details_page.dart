@@ -5,7 +5,6 @@ import 'package:superclean/aplication/ui/icons/app_icons.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
 import 'package:superclean/aplication/widgets/icon_widget.dart';
-import 'package:superclean/domain/bloc/characters/characters_bloc.dart';
 
 class CharacterDetailsPage extends StatefulWidget {
   const CharacterDetailsPage()
@@ -15,43 +14,18 @@ class CharacterDetailsPage extends StatefulWidget {
 }
 
 class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
-  
   CharacterDeatilsViewModel characterDetailsViewModel =
       CharacterDeatilsViewModel();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow,
-      child: Center(
-        child: TextButton(
-          child:
-              Text(CharactersBloc().state.selectedCharacter.actorName ?? '555'),
-          onPressed: () {
-           
-            
-            print(CharactersBloc().state.loadedCharacter);
-          },
-        ),
-      ),
-    );
-
-    /*   ChangeNotifierProvider<CharacterDeatilsViewModel>(
+    return ChangeNotifierProvider<CharacterDeatilsViewModel>(
       create: (_) => characterDetailsViewModel,
       builder: (ctx, _) {
         return SafeArea(
           child: Scaffold(
             backgroundColor: AppColors.darkBackground,
-            // appBar: AppBar(
-            //   backgroundColor: Colors.black87,
-            //   leading: IconWidget(
-            //     theme.icons.backArrow,
-            //     margin: EdgeInsets.symmetric(horizontal: 8.0),
-            //     onTap: viewModel.goToAllCharacters,
-            //   ),
-            // ),
-            body: 
-            CustomScrollView(
+            body: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
                   leading: IconWidget(
@@ -87,12 +61,12 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       children: [
                                         const Text(
                                           'Nick:  ',
-                                         
                                         ),
                                         Text(
-                                          characterDetailsViewModel.selectedCharacter?.nakeName ??
+                                          characterDetailsViewModel
+                                                  .selectedCharacter
+                                                  ?.nakeName ??
                                               '',
-                                          
                                         ),
                                       ],
                                     ),
@@ -101,11 +75,11 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       children: [
                                         const Text(
                                           'Name:  ',
-                                         
                                         ),
                                         Text(
-                                          characterDetailsViewModel.selectedCharacter?.name ?? '',
-                                         
+                                          characterDetailsViewModel
+                                                  .selectedCharacter?.name ??
+                                              '',
                                         ),
                                       ],
                                     ),
@@ -114,12 +88,11 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       children: [
                                         const Text(
                                           'Birthday:  ',
-                                         
                                         ),
-                                      /*   Text(
-                                          characterDetailsViewModel.birthDay ?? '',
-                                         
-                                        ), */
+                                        Text(
+                                          characterDetailsViewModel.birthDay ??
+                                              '',
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(height: 15),
@@ -127,13 +100,12 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       children: [
                                         const Text(
                                           'Portrayed:  ',
-                                         
                                         ),
                                         Text(
                                           characterDetailsViewModel
-                                                  .selectedCharacter?.actorName??
+                                                  .selectedCharacter
+                                                  ?.actorName ??
                                               '',
-                                          
                                         ),
                                       ],
                                     ),
@@ -142,12 +114,11 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       children: [
                                         const Text(
                                           'Status:  ',
-                                         
                                         ),
                                         Text(
-                                          characterDetailsViewModel.selectedCharacter?.status ??
+                                          characterDetailsViewModel
+                                                  .selectedCharacter?.status ??
                                               '',
-                                          
                                         ),
                                       ],
                                     ),
@@ -163,20 +134,10 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                   ),
                 ),
               ],
-            ), 
+            ),
           ),
         );
-
-        // Text(viewModel.selectedCharacter?.name ?? ''),
       },
-  
-    
-    
-        
-
-        // Text(viewModel.selectedCharacter?.name ?? ''),
-      
-     
-    );  */
+    );
   }
 }

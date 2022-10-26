@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/ui/themes/app_theme.dart';
+import 'package:superclean/service_locator.dart';
 
 
 
        
 class MyApp extends StatelessWidget {      
-         
-  final _appRouter = AppRouter();
+
+  final _appRouter = ServiceLocator.instace.router;
 
   MyApp({super.key});      
       

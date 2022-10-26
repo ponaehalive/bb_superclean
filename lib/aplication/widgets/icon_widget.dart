@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
 class IconWidget extends StatelessWidget {
-  IconWidget(
+  const IconWidget(
     this.icon, {
     super.key,
     this.onTap,
@@ -23,7 +23,7 @@ class IconWidget extends StatelessWidget {
   final double iconHeight;
   final Color background;
   final EdgeInsets margin;
-  late Color iconColor;
+  final Color iconColor;
   final void Function()? onTap;
 
   @override
