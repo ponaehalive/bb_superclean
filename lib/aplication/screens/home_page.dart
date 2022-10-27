@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/ui/icons/app_icons.dart';
+import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,6 +25,13 @@ class HomePage extends StatelessWidget {
               label: 'Home',
               icon: SvgPicture.asset(
                 AppIcons.pizza,
+                color: AppColors.darkSecondary,
+                height: 25,
+                width: 25,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppIcons.pizza,
+                
                 height: 25,
                 width: 25,
               ),
@@ -32,7 +40,14 @@ class HomePage extends StatelessWidget {
               label: 'Characters',
               icon: SvgPicture.asset(
                 AppIcons.faces,
-                height: 25,
+                color: AppColors.darkSecondary,
+                height: 20,
+                width: 25,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppIcons.faces,
+               
+                height: 20,
                 width: 25,
               ),
             ),
