@@ -18,14 +18,17 @@ class HomePage extends StatelessWidget {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
+          backgroundColor: AppColors.darkBackground,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
+          unselectedItemColor: AppColors.grey,
+         
           items: [
             BottomNavigationBarItem(
               label: 'Home',
               icon: SvgPicture.asset(
                 AppIcons.pizza,
-                color: AppColors.darkSecondary,
+                color: AppColors.grey,
                 height: 25,
                 width: 25,
               ),
@@ -40,7 +43,7 @@ class HomePage extends StatelessWidget {
               label: 'Characters',
               icon: SvgPicture.asset(
                 AppIcons.faces,
-                color: AppColors.darkSecondary,
+                color: AppColors.grey,
                 height: 20,
                 width: 25,
               ),
@@ -52,9 +55,17 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const BottomNavigationBarItem(
+              
               label: 'Users',
               icon: Icon(
                 Icons.accessibility_new_sharp,
+                color:  AppColors.grey,
+              ),
+              
+              
+              activeIcon: Icon(
+                Icons.accessibility_new_sharp,
+                color:  AppColors.green,
               ),
             ),
           ],

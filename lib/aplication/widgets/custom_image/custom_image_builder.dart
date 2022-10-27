@@ -54,7 +54,7 @@ class CustomImageBuilder extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: height,
-                      color: AppColors.darkText.withOpacity(0.4),
+                      color: AppColors.grey.withOpacity(0.4),
                     ),
                   ),
                 ),

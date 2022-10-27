@@ -50,7 +50,7 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
                             return Container(
-                              color: Colors.white,
+                              color: AppColors.darkBackground,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
@@ -62,67 +62,34 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                       child: Column(
                                         children: [
                                           const SizedBox(height: 20),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Nick:  ',
-                                              ),
-                                              Text(
-                                                viewModel.selectedCharacter
-                                                        ?.nakeName ??
-                                                    '',
-                                              ),
-                                            ],
+                                          _rowWidget(
+                                            label: 'Nick:  ',
+                                            labelValue: viewModel
+                                                .selectedCharacter?.nakeName,
                                           ),
                                           const SizedBox(height: 15),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Name:  ',
-                                              ),
-                                              Text(
-                                                viewModel.selectedCharacter
-                                                        ?.name ??
-                                                    '',
-                                              ),
-                                            ],
+                                          _rowWidget(
+                                            label: 'Name:  ',
+                                            labelValue: viewModel
+                                                .selectedCharacter?.name,
                                           ),
                                           const SizedBox(height: 15),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Birthday:  ',
-                                              ),
-                                              Text(
-                                                viewModel.birthDay ?? '',
-                                              ),
-                                            ],
+                                          _rowWidget(
+                                            label: 'Birthday:  ',
+                                            labelValue: viewModel
+                                                .selectedCharacter?.birthDay,
                                           ),
                                           const SizedBox(height: 15),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Portrayed:  ',
-                                              ),
-                                              Text(
-                                                viewModel.selectedCharacter
-                                                        ?.actorName ??
-                                                    '',
-                                              ),
-                                            ],
+                                          _rowWidget(
+                                            label: 'Portrayed:  ',
+                                            labelValue: viewModel
+                                                .selectedCharacter?.actorName,
                                           ),
                                           const SizedBox(height: 15),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Status:  ',
-                                              ),
-                                              Text(
-                                                viewModel.selectedCharacter
-                                                        ?.status ??
-                                                    '',
-                                              ),
-                                            ],
+                                          _rowWidget(
+                                            label: 'Status:  ',
+                                            labelValue: viewModel
+                                                .selectedCharacter?.status,
                                           ),
                                         ],
                                       ),
@@ -143,6 +110,32 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
           ),
         ),
       ),
+    );
+  }
+
+
+
+
+
+  Widget _rowWidget({
+    required String label,
+    required String? labelValue,
+  }) {
+    return Row(
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: AppColors.white,
+          ),
+        ),
+        Text(
+          labelValue ?? '',
+          style: const TextStyle(
+            color: AppColors.white,
+          ),
+        ),
+      ],
     );
   }
 }

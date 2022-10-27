@@ -13,7 +13,7 @@ class IconWidget extends StatelessWidget {
     this.iconHeight = 24.0,
     this.margin = EdgeInsets.zero,
     this.background = Colors.transparent,
-    this.iconColor = AppColors.darkText,
+    this.iconColor = AppColors.grey,
   });
 
   final String icon;

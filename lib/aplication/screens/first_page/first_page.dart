@@ -12,14 +12,14 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  FirstPageViewModel firstPageViewModel = FirstPageViewModel();
+  FirstPageViewModel viewModel = FirstPageViewModel();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FirstPageViewModel>(
-      create: (_) => firstPageViewModel..init(),
-      child: firstPageViewModel.selector<FirstPageViewModel, String>(
-        selector: () => firstPageViewModel.peremen,
+      create: (_) => viewModel..init(),
+      child: viewModel.selector<FirstPageViewModel, String>(
+        selector: () => viewModel.peremen,
         builder: (ctx, _) {
           return Scaffold(
             backgroundColor: AppColors.darkBackground,
@@ -32,13 +32,11 @@ class _FirstPageState extends State<FirstPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
                         MovieCard(
-                          image: 'assets/images/brbadlogo.jpg',
-                          onTap: () {},
-                        ),
+                            image: 'assets/images/brbadlogo.jpg', onTap: () {}
+
+                            //viewModel.goToBBSeasonsList,
+                            ),
                         const SizedBox(
                           height: 15,
                         ),
@@ -52,9 +50,6 @@ class _FirstPageState extends State<FirstPage> {
                         MovieCard(
                           image: 'assets/images/elcaminologo.jpg',
                           onTap: () {},
-                        ),
-                        const SizedBox(
-                          height: 20,
                         ),
                       ],
                     ),
