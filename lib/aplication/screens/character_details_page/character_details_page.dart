@@ -1,143 +1,148 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/character_details_page/character_details_vm.dart';
-import 'package:superclean/aplication/ui/icons/app_icons.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
+import 'package:superclean/aplication/ui/icons/app_icons.dart';
 import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
 import 'package:superclean/aplication/widgets/icon_widget.dart';
 
 class CharacterDetailsPage extends StatefulWidget {
-  const CharacterDetailsPage()
-      : super(key: const Key('CharacterDetailsPageKey'));
+  const CharacterDetailsPage({Key? key}) : super(key: key);
+
   @override
   State<CharacterDetailsPage> createState() => _CharacterDetailsPageState();
 }
 
 class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
-  CharacterDeatilsViewModel characterDetailsViewModel =
-      CharacterDeatilsViewModel();
+  CharacterDeatilsViewModel viewModel = CharacterDeatilsViewModel();
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<CharacterDeatilsViewModel>(
-      create: (_) => characterDetailsViewModel,
-      builder: (ctx, _) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: AppColors.darkBackground,
-            body: CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  leading: IconWidget(
-                    AppIcons.back,
-                    onTap: characterDetailsViewModel.goToAllCharacters,
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                  ),
-                  expandedHeight: 460.0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: CustomImage(
-                      characterDetailsViewModel.selectedCharacter?.image,
-                      height: 95.0,
-                      width: 125.0,
-                    ),
-                  ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return Container(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
+    return Scaffold(
+      backgroundColor: AppColors.darkBackground,
+      body: SafeArea(
+        child: ChangeNotifierProvider<CharacterDeatilsViewModel>(
+          create: (_) => viewModel..init(),
+          child: Center(
+            child: viewModel.selector<CharacterDeatilsViewModel, bool?>(
+              selector: () => viewModel.isCharactersLoading,
+              builder: (ctx, _) {
+                return Scaffold(
+                  backgroundColor: AppColors.darkBackground,
+                  body: CustomScrollView(
+                    slivers: <Widget>[
+                      SliverAppBar(
+                        leading: IconWidget(
+                          AppIcons.back,
+                          onTap: viewModel.goToAllCharacters,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                        ),
+                        expandedHeight: 460.0,
+                        flexibleSpace: FlexibleSpaceBar(
+                          background: CustomImage(
+                            viewModel.selectedCharacter?.image,
+                            height: 95.0,
+                            width: 125.0,
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return Container(
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Nick:  ',
-                                        ),
-                                        Text(
-                                          characterDetailsViewModel
-                                                  .selectedCharacter
-                                                  ?.nakeName ??
-                                              '',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Name:  ',
-                                        ),
-                                        Text(
-                                          characterDetailsViewModel
-                                                  .selectedCharacter?.name ??
-                                              '',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Birthday:  ',
-                                        ),
-                                        Text(
-                                          characterDetailsViewModel.birthDay ??
-                                              '',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Portrayed:  ',
-                                        ),
-                                        Text(
-                                          characterDetailsViewModel
-                                                  .selectedCharacter
-                                                  ?.actorName ??
-                                              '',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Status:  ',
-                                        ),
-                                        Text(
-                                          characterDetailsViewModel
-                                                  .selectedCharacter?.status ??
-                                              '',
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(height: 20),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Nick:  ',
+                                              ),
+                                              Text(
+                                                viewModel.selectedCharacter
+                                                        ?.nakeName ??
+                                                    '',
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 15),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Name:  ',
+                                              ),
+                                              Text(
+                                                viewModel.selectedCharacter
+                                                        ?.name ??
+                                                    '',
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 15),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Birthday:  ',
+                                              ),
+                                              Text(
+                                                viewModel.birthDay ?? '',
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 15),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Portrayed:  ',
+                                              ),
+                                              Text(
+                                                viewModel.selectedCharacter
+                                                        ?.actorName ??
+                                                    '',
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 15),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Status:  ',
+                                              ),
+                                              Text(
+                                                viewModel.selectedCharacter
+                                                        ?.status ??
+                                                    '',
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+                          },
+                          childCount: 1,
                         ),
-                      );
-                    },
-                    childCount: 1,
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                );
+              },
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

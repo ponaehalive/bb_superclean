@@ -3,13 +3,23 @@ import 'package:superclean/domain/models/character_model.dart';
 class CharactersState {
   List<CharacterModel>? loadedCharacter;
   bool? isLoadind;
-  CharacterModel selectedCharacter;
+  CharacterModel? selectedCharacter;
 
   CharactersState({
     this.loadedCharacter,
     this.isLoadind,
     required this.selectedCharacter,
   });
+
+  CharactersState copyWith({
+    List<CharacterModel>? loadedCharacter,
+    bool? isLoadind,
+    CharacterModel? selectedCharacter,
+  }) =>
+      CharactersState(
+          loadedCharacter: loadedCharacter ?? this.loadedCharacter,
+          isLoadind: isLoadind ?? this.isLoadind,
+          selectedCharacter: selectedCharacter ?? this.selectedCharacter);
 
   static CharactersState get initial {
     return CharactersState(
@@ -19,3 +29,4 @@ class CharactersState {
     );
   }
 }
+

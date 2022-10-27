@@ -8,4 +8,6 @@ class ServiceLocator {
   final AppRouter router = AppRouter();
 
   final CharactersBloc charactersBloc = CharactersBloc();
+
+  
 }

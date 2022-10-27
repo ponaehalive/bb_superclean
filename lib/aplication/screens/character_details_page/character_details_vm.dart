@@ -1,19 +1,21 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/models/character_model.dart';
 import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 import 'package:superclean/src/utils/date_time_formatter.dart';
 
 class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
-  final _charactersBloc = ServiceLocator.instace.charactersBloc;
+  final charactersBloc = ServiceLocator.instace.charactersBloc;
+  final _appRouter = ServiceLocator.instace.router;
 
   StreamSubscription? _charactersBlocSubscription;
 
   CharacterDeatilsViewModel() {
     _charactersBlocSubscription =
-        _charactersBloc.stream.listen((_) => notifyListeners());
+        charactersBloc.stream.listen((_) => notifyListeners());
   }
 
   @override
@@ -22,9 +24,15 @@ class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
     _charactersBlocSubscription?.cancel();
   }
 
-  void init() {}
+  void init() {
+    // ignore: avoid_print
+    print('character details init');
 
-  void goToAllCharacters() {}
+     }
+
+  void goToAllCharacters() {
+     _appRouter.push(const CharactersRoute());
+  }
 
   String? get birthDay {
     if (selectedCharacter!.birthDay != 'Unknown') {
@@ -36,5 +44,7 @@ class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   CharacterModel? get selectedCharacter =>
-      _charactersBloc.state.selectedCharacter;
+      charactersBloc.state.selectedCharacter;
+
+      bool get isCharactersLoading => charactersBloc.state.isLoadind ?? false;
 }

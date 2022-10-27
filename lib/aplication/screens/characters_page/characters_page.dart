@@ -14,7 +14,6 @@ class CharactersPage extends StatefulWidget {
 
 class _CharactersPageState extends State<CharactersPage> {
   CharactersPageViewModel charactersPageViewModel = CharactersPageViewModel();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,6 @@ class _CharactersPageState extends State<CharactersPage> {
                                   onTap: () {
                                     charactersPageViewModel
                                         .selectCharacter(character);
-                                    
                                   },
                                 ),
                               )
