@@ -10,21 +10,19 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     on<CharactersLoadEvent>(
       (event, emit) async {
         emit(
-          CharactersState(
-            loadedCharacter: [],
+          state.copyWith(
             isLoadind: true,
-            selectedCharacter: CharacterModel(),
           ),
         );
 
         {
           final List<CharacterModel> loadedCharactersList =
               await characterRepository.getAllCharacters();
+
           emit(
-            CharactersState(
+            state.copyWith(
               loadedCharacter: loadedCharactersList,
               isLoadind: false,
-              selectedCharacter: CharacterModel(),
             ),
           );
         }
@@ -32,7 +30,11 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     );
     on<CharacterSelectEvent>(
       (event, emit) async {
-        emit(state.copyWith(selectedCharacter: event.selectedCharacter));
+        emit(
+          state.copyWith(
+            selectedCharacter: event.selectedCharacter,
+          ),
+        );
       },
     );
   }
