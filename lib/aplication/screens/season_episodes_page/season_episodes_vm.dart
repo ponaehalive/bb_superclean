@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-
-import 'package:superclean/domain/bloc/episodes/episodes_event.dart';
+import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/models/episode_model.dart';
-
 import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
@@ -24,27 +22,14 @@ class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
     _episodesBlocSubscription?.cancel();
   }
 
-  void init() {
-   
-  }
+  void init() {}
 
   List<EpisodeModel> get allBBEpisodes =>
       _episodesBloc.state.loadedBBEpisodes ?? [];
 
-
-      void selectSeason(String? selectedSeasonNumber) {
-    _episodesBloc.add(
-        SeasonSelectEvent(selectedSeasonNumber: selectedSeasonNumber),
-      );
-    goToSeasonEpisodesPage();
+  void backToSeasonsList() {
+    _appRouter.push(const SeasonsListRoute());
   }
-
-   void goToSeasonEpisodesPage() {
-
-  
-  }
-
-  void clear() {}
 
   void goToCharacterInfoPage() {}
 
@@ -52,6 +37,9 @@ class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
 
   bool get isAllBBEpisodesLoading => _episodesBloc.state.isLoadind ?? false;
 
-   List<EpisodeModel>? get selectedSeasonList =>
+  List<EpisodeModel>? get selectedSeasonList =>
       _episodesBloc.state.selectedSeasonEpisodes;
+
+  String get appBarText =>
+      'Season ${_episodesBloc.state.selectedSeasonNumber} Episodes';
 }

@@ -53,7 +53,7 @@ AppRouter get router => AppRouter();
     ),
        AutoRoute(
               path: 'seasons_list',
-              name: 'SeasonsListRouter',
+              name: 'SeasonsListRoute',
               page: SeasonsListPage,
             ),
 

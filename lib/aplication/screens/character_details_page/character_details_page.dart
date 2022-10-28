@@ -76,8 +76,7 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                           const SizedBox(height: 15),
                                           _rowWidget(
                                             label: 'Birthday:  ',
-                                            labelValue: viewModel
-                                                .selectedCharacter?.birthDay,
+                                            labelValue: viewModel.birthDayFormatted,
                                           ),
                                           const SizedBox(height: 15),
                                           _rowWidget(

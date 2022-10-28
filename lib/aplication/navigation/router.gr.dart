@@ -35,7 +35,7 @@ class AppRouter extends _i9.RootStackRouter {
         child: const _i1.AutoTabsScaffoldPage(),
       );
     },
-    SeasonsListRouter.name: (routeData) {
+    SeasonsListRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.SeasonsListPage(),
@@ -128,7 +128,7 @@ class AppRouter extends _i9.RootStackRouter {
           ],
         ),
         _i9.RouteConfig(
-          SeasonsListRouter.name,
+          SeasonsListRoute.name,
           path: 'seasons_list',
         ),
         _i9.RouteConfig(
@@ -153,14 +153,14 @@ class AutoTabsScaffoldRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.SeasonsListPage]
-class SeasonsListRouter extends _i9.PageRouteInfo<void> {
-  const SeasonsListRouter()
+class SeasonsListRoute extends _i9.PageRouteInfo<void> {
+  const SeasonsListRoute()
       : super(
-          SeasonsListRouter.name,
+          SeasonsListRoute.name,
           path: 'seasons_list',
         );
 
-  static const String name = 'SeasonsListRouter';
+  static const String name = 'SeasonsListRoute';
 }
 
 /// generated route for

@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
+import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/domain/models/episode_model.dart';
 
 class EpisodeCardWidget extends StatelessWidget {
   final void Function()? onTap;
   final EpisodeModel episode;
 
-  const EpisodeCardWidget({super.key, 
+  const EpisodeCardWidget({
+    super.key,
     required this.episode,
     required this.onTap,
   });
@@ -24,7 +25,7 @@ class EpisodeCardWidget extends StatelessWidget {
             color: const Color(0xFF282828),
             borderRadius: BorderRadius.circular(5),
             boxShadow: const [
-             BoxShadow(
+              BoxShadow(
                 blurRadius: 2.0,
                 offset: Offset(
                   1.0,
@@ -40,7 +41,10 @@ class EpisodeCardWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     episode.title ?? '',
-                    
+                    style: const TextStyle(
+                      color: AppColors.white88,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -49,15 +53,10 @@ class EpisodeCardWidget extends StatelessWidget {
                 top: 5,
                 child: Text(
                   episode.episodeNumber ?? '',
-                 
-                ),
-              ),
-              Positioned(
-                bottom: 1,
-                right: 5,
-                child: Text(
-                  episode.airDate ?? '',
-                  
+                  style: const TextStyle(
+                    color: AppColors.white88,
+                    fontSize: 10,
+                  ),
                 ),
               ),
             ],
@@ -66,4 +65,13 @@ class EpisodeCardWidget extends StatelessWidget {
       ),
     );
   }
+
+/*   String? get airDayFormatted {
+    if (episode.airDate != 'Unknown') {
+      return AppFormatter.format(
+          DateFormat('MM-dd-yyyy').parse(episode.airDate ?? ''),
+          AppFormatter.airdateFormat);
+    }
+    return 'Unknown';
+  } */
 }

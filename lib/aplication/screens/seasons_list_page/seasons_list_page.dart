@@ -25,11 +25,12 @@ class _SeasonsListPageState extends State<SeasonsListPage> {
           backgroundColor: AppColors.darkBackground,
           appBar: AppBar(
             leading: IconWidget(
-              AppIcons.back,
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
-              onTap: () {},
-            ),
-            backgroundColor: Colors.black87,
+                          AppIcons.back,
+                          onTap: viewModel.goHome,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                        ),
+            backgroundColor: AppColors.darkBackground,
+            elevation: 0,
             title: const Text(
               'Breaking Bad Seasons',
             ),
@@ -59,19 +60,19 @@ class _SeasonsListPageState extends State<SeasonsListPage> {
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb2season.jpg',
-                            onTap: () {},
+                           onTap: () => viewModel.selectSeason('2'),
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb3season.jpg',
-                            onTap: () {},
+                            onTap: () => viewModel.selectSeason('3'),
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb4season.jpg',
-                            onTap: () {},
+                            onTap: () => viewModel.selectSeason('4'),
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb5season.jpg',
-                            onTap: () {},
+                           onTap: () => viewModel.selectSeason('5'),
                           ),
                         ],
                       ),

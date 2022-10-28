@@ -20,9 +20,7 @@ class HomePageViewModel extends ChangeNotifier with BaseViewModel {
     print('init 1 page');
   }
 
-   void goToBBSeasonsList() =>
-    _appRouter.push(
-      const SeasonsListRouter(),
-    );  
-
+  void goToBBSeasonsList() => _appRouter.push(
+        const SeasonsListRoute(),
+      );
 }
