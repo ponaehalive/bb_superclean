@@ -47,6 +47,20 @@ class Provider {
     }
   }
 
+ Future<List<dynamic>> getAllBBEpisodes() async {
+    try {
+      Response response = await dio.get(EndPoints.allBBEpisodes);
+     
+      return response.data;
+    } catch (e) {
+      print("some Error $e");
+      return [];
+    }
+  }
+
+
+
+
 /*http response
    Future<List<CharacterModel>> getCharactersHttp() async {
     final response = await http.get(

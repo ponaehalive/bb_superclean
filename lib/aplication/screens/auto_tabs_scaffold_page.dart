@@ -5,14 +5,14 @@ import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/ui/icons/app_icons.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class AutoTabsScaffoldPage extends StatelessWidget {
+  const AutoTabsScaffoldPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        FirstRouter(),
+        HomePageRouter(),
         SecondRouter(),
         ThirdRouter(),
       ],
@@ -22,7 +22,6 @@ class HomePage extends StatelessWidget {
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           unselectedItemColor: AppColors.grey,
-         
           items: [
             BottomNavigationBarItem(
               label: 'Home',
@@ -34,7 +33,6 @@ class HomePage extends StatelessWidget {
               ),
               activeIcon: SvgPicture.asset(
                 AppIcons.pizza,
-                
                 height: 25,
                 width: 25,
               ),
@@ -44,28 +42,24 @@ class HomePage extends StatelessWidget {
               icon: SvgPicture.asset(
                 AppIcons.faces,
                 color: AppColors.grey,
-                height: 20,
+                height: 25,
                 width: 25,
               ),
               activeIcon: SvgPicture.asset(
                 AppIcons.faces,
-               
-                height: 20,
+                height: 25,
                 width: 25,
               ),
             ),
             const BottomNavigationBarItem(
-              
               label: 'Users',
               icon: Icon(
                 Icons.accessibility_new_sharp,
-                color:  AppColors.grey,
+                color: AppColors.grey,
               ),
-              
-              
               activeIcon: Icon(
                 Icons.accessibility_new_sharp,
-                color:  AppColors.green,
+                color: AppColors.green,
               ),
             ),
           ],

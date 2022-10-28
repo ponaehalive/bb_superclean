@@ -11,141 +11,164 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:auto_route/empty_router_widgets.dart' as _i2;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:auto_route/empty_router_widgets.dart' as _i3;
+import 'package:flutter/material.dart' as _i9;
 
-import '../screens/character_details_page/character_details_page.dart' as _i6;
-import '../screens/characters_page/characters_page.dart' as _i5;
-import '../screens/first_page/first_page.dart' as _i4;
-import '../screens/home_page.dart' as _i1;
-import '../screens/third_page/third_page.dart' as _i3;
+import '../screens/auto_tabs_scaffold_page.dart' as _i1;
+import '../screens/character_details_page/character_details_page.dart' as _i7;
+import '../screens/characters_page/characters_page.dart' as _i6;
+import '../screens/home_page/home_page.dart' as _i5;
+import '../screens/seasons_list_page/seasons_list_page.dart' as _i2;
+import '../screens/third_page/third_page.dart' as _i4;
 
-class AppRouter extends _i7.RootStackRouter {
-  AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
+class AppRouter extends _i8.RootStackRouter {
+  AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+  final Map<String, _i8.PageFactory> pagesMap = {
+    AutoTabsScaffoldRoute.name: (routeData) {
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePage(),
+        child: const _i1.AutoTabsScaffoldPage(),
       );
     },
-    FirstRouter.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+    SeasonsListRouter.name: (routeData) {
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i2.SeasonsListPage(),
+      );
+    },
+    HomePageRouter.name: (routeData) {
+      return _i8.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i3.EmptyRouterPage(),
       );
     },
     SecondRouter.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i3.EmptyRouterPage(),
       );
     },
     ThirdRouter.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.ThirdPage(),
+        child: const _i4.ThirdPage(),
       );
     },
-    FirstRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+    HomeRoute.name: (routeData) {
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.FirstPage(),
+        child: const _i5.HomePage(),
       );
     },
     CharactersRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.CharactersPage(),
+        child: const _i6.CharactersPage(),
       );
     },
     CharacterDetailsRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.CharacterDetailsPage(),
+        child: const _i7.CharacterDetailsPage(),
       );
     },
   };
 
   @override
-  List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(
-          HomeRoute.name,
+  List<_i8.RouteConfig> get routes => [
+        _i8.RouteConfig(
+          AutoTabsScaffoldRoute.name,
           path: '/',
           children: [
-            _i7.RouteConfig(
-              FirstRouter.name,
-              path: 'first',
-              parent: HomeRoute.name,
+            _i8.RouteConfig(
+              HomePageRouter.name,
+              path: 'home_page',
+              parent: AutoTabsScaffoldRoute.name,
               children: [
-                _i7.RouteConfig(
-                  FirstRoute.name,
+                _i8.RouteConfig(
+                  HomeRoute.name,
                   path: '',
-                  parent: FirstRouter.name,
+                  parent: HomePageRouter.name,
                 )
               ],
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               SecondRouter.name,
               path: 'second',
-              parent: HomeRoute.name,
+              parent: AutoTabsScaffoldRoute.name,
               children: [
-                _i7.RouteConfig(
+                _i8.RouteConfig(
                   CharactersRoute.name,
                   path: '',
                   parent: SecondRouter.name,
                 ),
-                _i7.RouteConfig(
+                _i8.RouteConfig(
                   CharacterDetailsRoute.name,
-                  path: ':userId',
+                  path: 'character_details',
                   parent: SecondRouter.name,
                 ),
               ],
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               ThirdRouter.name,
               path: 'third',
-              parent: HomeRoute.name,
+              parent: AutoTabsScaffoldRoute.name,
             ),
           ],
-        )
+        ),
+        _i8.RouteConfig(
+          SeasonsListRouter.name,
+          path: 'seasons_list',
+        ),
       ];
 }
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i7.PageRouteInfo<void> {
-  const HomeRoute({List<_i7.PageRouteInfo>? children})
+/// [_i1.AutoTabsScaffoldPage]
+class AutoTabsScaffoldRoute extends _i8.PageRouteInfo<void> {
+  const AutoTabsScaffoldRoute({List<_i8.PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          AutoTabsScaffoldRoute.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'AutoTabsScaffoldRoute';
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class FirstRouter extends _i7.PageRouteInfo<void> {
-  const FirstRouter({List<_i7.PageRouteInfo>? children})
+/// [_i2.SeasonsListPage]
+class SeasonsListRouter extends _i8.PageRouteInfo<void> {
+  const SeasonsListRouter()
       : super(
-          FirstRouter.name,
-          path: 'first',
+          SeasonsListRouter.name,
+          path: 'seasons_list',
+        );
+
+  static const String name = 'SeasonsListRouter';
+}
+
+/// generated route for
+/// [_i3.EmptyRouterPage]
+class HomePageRouter extends _i8.PageRouteInfo<void> {
+  const HomePageRouter({List<_i8.PageRouteInfo>? children})
+      : super(
+          HomePageRouter.name,
+          path: 'home_page',
           initialChildren: children,
         );
 
-  static const String name = 'FirstRouter';
+  static const String name = 'HomePageRouter';
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class SecondRouter extends _i7.PageRouteInfo<void> {
-  const SecondRouter({List<_i7.PageRouteInfo>? children})
+/// [_i3.EmptyRouterPage]
+class SecondRouter extends _i8.PageRouteInfo<void> {
+  const SecondRouter({List<_i8.PageRouteInfo>? children})
       : super(
           SecondRouter.name,
           path: 'second',
@@ -156,8 +179,8 @@ class SecondRouter extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.ThirdPage]
-class ThirdRouter extends _i7.PageRouteInfo<void> {
+/// [_i4.ThirdPage]
+class ThirdRouter extends _i8.PageRouteInfo<void> {
   const ThirdRouter()
       : super(
           ThirdRouter.name,
@@ -168,20 +191,20 @@ class ThirdRouter extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.FirstPage]
-class FirstRoute extends _i7.PageRouteInfo<void> {
-  const FirstRoute()
+/// [_i5.HomePage]
+class HomeRoute extends _i8.PageRouteInfo<void> {
+  const HomeRoute()
       : super(
-          FirstRoute.name,
+          HomeRoute.name,
           path: '',
         );
 
-  static const String name = 'FirstRoute';
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for
-/// [_i5.CharactersPage]
-class CharactersRoute extends _i7.PageRouteInfo<void> {
+/// [_i6.CharactersPage]
+class CharactersRoute extends _i8.PageRouteInfo<void> {
   const CharactersRoute()
       : super(
           CharactersRoute.name,
@@ -192,12 +215,12 @@ class CharactersRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.CharacterDetailsPage]
-class CharacterDetailsRoute extends _i7.PageRouteInfo<void> {
+/// [_i7.CharacterDetailsPage]
+class CharacterDetailsRoute extends _i8.PageRouteInfo<void> {
   const CharacterDetailsRoute()
       : super(
           CharacterDetailsRoute.name,
-          path: ':userId',
+          path: 'character_details',
         );
 
   static const String name = 'CharacterDetailsRoute';

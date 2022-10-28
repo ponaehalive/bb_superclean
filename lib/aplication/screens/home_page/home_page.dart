@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:superclean/aplication/screens/first_page/first_page_vm.dart';
-import 'package:superclean/aplication/screens/first_page/widgets/movie_card.dart';
+import 'package:superclean/aplication/screens/home_page/home_page_vm.dart';
+import 'package:superclean/aplication/screens/home_page/widgets/movie_card.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
-  FirstPageViewModel viewModel = FirstPageViewModel();
+class _HomePageState extends State<HomePage> {
+  HomePageViewModel viewModel = HomePageViewModel();
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FirstPageViewModel>(
+    return ChangeNotifierProvider<HomePageViewModel>(
       create: (_) => viewModel..init(),
-      child: viewModel.selector<FirstPageViewModel, String>(
+      child: viewModel.selector<HomePageViewModel, String>(
         selector: () => viewModel.peremen,
         builder: (ctx, _) {
           return Scaffold(
@@ -33,10 +33,9 @@ class _FirstPageState extends State<FirstPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         MovieCard(
-                            image: 'assets/images/brbadlogo.jpg', onTap: () {}
-
-                            //viewModel.goToBBSeasonsList,
-                            ),
+                          image: 'assets/images/brbadlogo.jpg',
+                          onTap: viewModel.goToBBSeasonsList,
+                        ),
                         const SizedBox(
                           height: 15,
                         ),

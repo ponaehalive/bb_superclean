@@ -3,8 +3,9 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/aplication/screens/character_details_page/character_details_page.dart';
 import 'package:superclean/aplication/screens/characters_page/characters_page.dart';
-import 'package:superclean/aplication/screens/first_page/first_page.dart';
-import 'package:superclean/aplication/screens/home_page.dart';
+import 'package:superclean/aplication/screens/home_page/home_page.dart';
+import 'package:superclean/aplication/screens/auto_tabs_scaffold_page.dart';
+import 'package:superclean/aplication/screens/seasons_list_page/seasons_list_page.dart';
 import 'package:superclean/aplication/screens/third_page/third_page.dart';
 
 AppRouter get router => AppRouter();
@@ -14,16 +15,16 @@ AppRouter get router => AppRouter();
   routes: [
     AutoRoute(
       path: '/',
-      page: HomePage,
+      page: AutoTabsScaffoldPage,
       children: [
         AutoRoute(
-          path: 'first',
-          name: 'FirstRouter',
+          path: 'home_page',
+          name: 'HomePageRouter',
           page: EmptyRouterPage,
           children: [
             AutoRoute(
               path: '',
-              page: FirstPage,
+              page: HomePage,
             ),
           ],
         ),
@@ -37,7 +38,7 @@ AppRouter get router => AppRouter();
               page: CharactersPage,
             ),
             AutoRoute(
-              path: ':userId',
+              path: 'character_details',
               page: CharacterDetailsPage,
             ),
           ],
@@ -49,6 +50,13 @@ AppRouter get router => AppRouter();
         ),
       ],
     ),
+       AutoRoute(
+              path: 'seasons_list',
+              name: 'SeasonsListRouter',
+              page: SeasonsListPage,
+            ),
   ],
+
+          
 )
 class $AppRouter {}

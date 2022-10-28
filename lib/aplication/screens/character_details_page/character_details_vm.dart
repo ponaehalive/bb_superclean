@@ -27,11 +27,10 @@ class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
   void init() {
     // ignore: avoid_print
     print('character details init');
-
-     }
+  }
 
   void goToAllCharacters() {
-     _appRouter.push(const CharactersRoute());
+    _appRouter.push(const CharactersRoute());
   }
 
   String? get birthDay {
@@ -46,5 +45,5 @@ class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
   CharacterModel? get selectedCharacter =>
       charactersBloc.state.selectedCharacter;
 
-      bool get isCharactersLoading => charactersBloc.state.isLoadind ?? false;
+  bool get isCharactersLoading => charactersBloc.state.isLoadind ?? false;
 }

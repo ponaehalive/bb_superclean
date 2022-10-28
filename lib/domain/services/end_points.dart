@@ -9,6 +9,11 @@ class EndPoints {
   static const String categoryBreakingBad = '?category=Breaking+Bad';
   static const String categoryBetterCallSaul = '?category=Better+Call+Saul';
   static const String characterName = '?name=';
+   static const String allBBEpisodes = 'episodes?series=Breaking+Bad';
+
+
+
+
 
 
 

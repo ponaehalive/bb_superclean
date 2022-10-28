@@ -20,7 +20,7 @@ class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
   @override
   void dispose() {
     super.dispose();
-     _charactersBlocSubscription?.cancel();
+    _charactersBlocSubscription?.cancel();
   }
 
   void init() {
@@ -36,14 +36,13 @@ class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
   void clear() {}
 
   void selectCharacter(CharacterModel selectedCharacter) {
-   
     _charactersBloc.add(
       CharacterSelectEvent(selectedCharacter: selectedCharacter),
     );
 
-      _appRouter.push(
+    _appRouter.push(
       const CharacterDetailsRoute(),
-    ); 
+    );
   }
 
   void goToCharacterInfoPage() {}
