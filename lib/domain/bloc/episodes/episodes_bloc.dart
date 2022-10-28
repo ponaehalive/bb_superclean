@@ -37,5 +37,15 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
         );
       },
     ); 
+
+    on<EpisodeSelectEvent>(
+      (event, emit) async {
+        emit(
+          state.copyWith(
+            selectedEpisode: event.selectedEpisode,
+          ),
+        );
+      },
+    ); 
   }
 }

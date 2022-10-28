@@ -66,12 +66,5 @@ class EpisodeCardWidget extends StatelessWidget {
     );
   }
 
-/*   String? get airDayFormatted {
-    if (episode.airDate != 'Unknown') {
-      return AppFormatter.format(
-          DateFormat('MM-dd-yyyy').parse(episode.airDate ?? ''),
-          AppFormatter.airdateFormat);
-    }
-    return 'Unknown';
-  } */
+
 }

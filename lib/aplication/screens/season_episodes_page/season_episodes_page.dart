@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:superclean/aplication/screens/season_episodes_page/season_episodes_vm.dart';
 import 'package:superclean/aplication/screens/season_episodes_page/widgets/episode_card_widget.dart';
 import 'package:superclean/aplication/ui/icons/app_icons.dart';
@@ -25,10 +24,10 @@ class _SeasonEpisodesPageState extends State<SeasonEpisodesPage> {
       appBar: AppBar(
         elevation: 0,
         leading: IconWidget(
-                          AppIcons.back,
-                          onTap: viewModel.backToSeasonsList,
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                        ),
+          AppIcons.back,
+          onTap: viewModel.backToSeasonsList,
+          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        ),
         backgroundColor: AppColors.darkBackground,
         title: Text(
           viewModel.appBarText,
@@ -54,7 +53,7 @@ class _SeasonEpisodesPageState extends State<SeasonEpisodesPage> {
                             children: viewModel.selectedSeasonList!.map(
                               (episode) {
                                 return EpisodeCardWidget(
-                                  onTap: () {},
+                                  onTap: () => viewModel.selectEpisode(episode),
                                   episode: episode,
                                 );
                               },

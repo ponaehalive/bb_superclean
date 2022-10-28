@@ -1,18 +1,19 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
-import 'package:superclean/domain/bloc/episodes/episodes_event.dart';
 import 'package:superclean/domain/models/episode_model.dart';
 import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
+import 'package:superclean/src/utils/date_time_formatter.dart';
 
-class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
+class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
   final _episodesBloc = ServiceLocator.instace.episodesBloc;
   final _appRouter = ServiceLocator.instace.router;
 
   StreamSubscription? _episodesBlocSubscription;
 
-  SeasonEpisodesViewModel() {
+  EpisodeInfoViewModel() {
     _episodesBlocSubscription =
         _episodesBloc.stream.listen((_) => notifyListeners());
   }
@@ -28,22 +29,11 @@ class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
   List<EpisodeModel> get allBBEpisodes =>
       _episodesBloc.state.loadedBBEpisodes ?? [];
 
-  void backToSeasonsList() {
-    _appRouter.push(const SeasonsListRoute());
+  void backToSelectedSeasonEpisodes() {
+    _appRouter.push(const SeasonEpisodesPageRouter());
   }
 
   void goToCharacterInfoPage() {}
-
-  void goToEpisodeInfoPage() {
-    _appRouter.push(const EpisodeInfoRouter());
-  }
-
-  void selectEpisode(EpisodeModel? selectedEpisode) {
-    _episodesBloc.add(
-      EpisodeSelectEvent(selectedEpisode: selectedEpisode ?? EpisodeModel()),
-    );
-    goToEpisodeInfoPage();
-  }
 
   String? get selectedSeason => _episodesBloc.state.selectedSeasonNumber;
 
@@ -51,6 +41,18 @@ class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
 
   List<EpisodeModel>? get selectedSeasonList =>
       _episodesBloc.state.selectedSeasonEpisodes;
+
+  EpisodeModel? get selectedEpisode => _episodesBloc.state.selectedEpisode;
+
+  String? get airDayFormatted {
+    if (_episodesBloc.state.selectedEpisode?.airDate != 'Unknown') {
+      return AppFormatter.format(
+          DateFormat('MM-dd-yyyy')
+              .parse(_episodesBloc.state.selectedEpisode?.airDate ?? ''),
+          AppFormatter.airdateFormat);
+    }
+    return 'Unknown';
+  }
 
   String get appBarText =>
       'Season ${_episodesBloc.state.selectedSeasonNumber} Episodes';
