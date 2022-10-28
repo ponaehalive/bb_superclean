@@ -18,17 +18,16 @@ class _SeasonsListPageState extends State<SeasonsListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-        ChangeNotifierProvider(
+    return ChangeNotifierProvider(
       create: (_) => viewModel..init(),
       builder: (ctx, _) {
         return Scaffold(
           backgroundColor: AppColors.darkBackground,
           appBar: AppBar(
             leading: IconWidget(
-             AppIcons.back,
+              AppIcons.back,
               margin: const EdgeInsets.symmetric(horizontal: 8.0),
-              onTap: (){},
+              onTap: () {},
             ),
             backgroundColor: Colors.black87,
             title: const Text(
@@ -56,23 +55,23 @@ class _SeasonsListPageState extends State<SeasonsListPage> {
                         children: <Widget>[
                           SeasonCardWidget(
                             image: 'assets/images/bb1season.jpg',
-                            onTap: () {},
+                            onTap: () => viewModel.selectSeason('1'),
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb2season.jpg',
-                             onTap: () {},
+                            onTap: () {},
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb3season.jpg',
-                             onTap: () {},
+                            onTap: () {},
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb4season.jpg',
-                             onTap: () {},
+                            onTap: () {},
                           ),
                           SeasonCardWidget(
                             image: 'assets/images/bb5season.jpg',
-                             onTap: () {},
+                            onTap: () {},
                           ),
                         ],
                       ),
@@ -84,7 +83,6 @@ class _SeasonsListPageState extends State<SeasonsListPage> {
           ),
         );
       },
-        
     );
   }
 }

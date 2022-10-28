@@ -5,6 +5,7 @@ import 'package:superclean/aplication/screens/character_details_page/character_d
 import 'package:superclean/aplication/screens/characters_page/characters_page.dart';
 import 'package:superclean/aplication/screens/home_page/home_page.dart';
 import 'package:superclean/aplication/screens/auto_tabs_scaffold_page.dart';
+import 'package:superclean/aplication/screens/season_episodes_page/season_episodes_page.dart';
 import 'package:superclean/aplication/screens/seasons_list_page/seasons_list_page.dart';
 import 'package:superclean/aplication/screens/third_page/third_page.dart';
 
@@ -55,7 +56,16 @@ AppRouter get router => AppRouter();
               name: 'SeasonsListRouter',
               page: SeasonsListPage,
             ),
+
+             AutoRoute(
+              path: 'season_episodes_list',
+              name: 'SeasonEpisodesPageRouter',
+              page: SeasonEpisodesPage,
+            ),
   ],
+
+
+  
 
           
 )

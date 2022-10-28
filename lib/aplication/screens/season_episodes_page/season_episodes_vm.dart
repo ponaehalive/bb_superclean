@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:superclean/aplication/navigation/router.gr.dart';
 
 import 'package:superclean/domain/bloc/episodes/episodes_event.dart';
 import 'package:superclean/domain/models/episode_model.dart';
@@ -8,13 +7,13 @@ import 'package:superclean/domain/models/episode_model.dart';
 import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
-class SeasonsListViewModel extends ChangeNotifier with BaseViewModel {
+class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
   final _episodesBloc = ServiceLocator.instace.episodesBloc;
   final _appRouter = ServiceLocator.instace.router;
 
   StreamSubscription? _episodesBlocSubscription;
 
-  SeasonsListViewModel() {
+  SeasonEpisodesViewModel() {
     _episodesBlocSubscription =
         _episodesBloc.stream.listen((_) => notifyListeners());
   }
@@ -26,11 +25,7 @@ class SeasonsListViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   void init() {
-    if (allBBEpisodes.isEmpty) {
-      _episodesBloc.add(
-        BBEpisodesLoadEvent(),
-      );
-    }
+   
   }
 
   List<EpisodeModel> get allBBEpisodes =>
@@ -46,10 +41,6 @@ class SeasonsListViewModel extends ChangeNotifier with BaseViewModel {
 
    void goToSeasonEpisodesPage() {
 
-_appRouter.push(
-      const SeasonEpisodesPageRouter(),
-    );
-    
   
   }
 
@@ -57,7 +48,10 @@ _appRouter.push(
 
   void goToCharacterInfoPage() {}
 
+  String? get selectedSeason => _episodesBloc.state.selectedSeasonNumber;
+
   bool get isAllBBEpisodesLoading => _episodesBloc.state.isLoadind ?? false;
 
-   
+   List<EpisodeModel>? get selectedSeasonList =>
+      _episodesBloc.state.selectedSeasonEpisodes;
 }

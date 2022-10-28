@@ -21,21 +21,21 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
 
           emit(
             state.copyWith(
-              loadedEpisodes: loadedBBEpisodesList,
+              loadedBBEpisodes: loadedBBEpisodesList,
               isLoadind: false,
             ),
           );
         }
       },
     );
-    /*  on<CharacterSelectEvent>(
+    on<SeasonSelectEvent>(
       (event, emit) async {
         emit(
           state.copyWith(
-            selectedCharacter: event.selectedCharacter,
+            selectedSeasonNumber: event.selectedSeasonNumber,
           ),
         );
       },
-    ); */
+    ); 
   }
 }
