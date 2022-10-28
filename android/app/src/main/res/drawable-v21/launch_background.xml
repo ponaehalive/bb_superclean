@@ -4,9 +4,11 @@
     <item android:drawable="?android:colorBackground" />
 
     <!-- You can insert your own image assets here -->
-    <!-- <item>
+    <!-- android:gravity="clip_vertical" -->
+
+    <item>
         <bitmap
-            android:gravity="center"
-            android:src="@mipmap/launch_image" />
-    </item> -->
+                android:gravity="center"
+                android:src="@drawable/lauch_screen_logo" />
+    </item>
 </layer-list>
