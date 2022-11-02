@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
+import 'package:superclean/aplication/screens/auth/auth_page.dart';
 import 'package:superclean/aplication/screens/character_details_page/character_details_page.dart';
 import 'package:superclean/aplication/screens/characters_page/characters_page.dart';
 import 'package:superclean/aplication/screens/episode_info_page/episode_info_page.dart';
@@ -17,6 +18,11 @@ AppRouter get router => AppRouter();
   routes: [
     AutoRoute(
       path: '/',
+      name: 'AuthRouter',
+      page: AuthPage,
+    ),
+    AutoRoute(
+      path: 'auto_scaffold',
       page: AutoTabsScaffoldPage,
       children: [
         AutoRoute(
@@ -52,28 +58,21 @@ AppRouter get router => AppRouter();
         ),
       ],
     ),
-       AutoRoute(
-              path: 'seasons_list',
-              name: 'SeasonsListRoute',
-              page: SeasonsListPage,
-            ),
-
-             AutoRoute(
-              path: 'season_episodes_list',
-              name: 'SeasonEpisodesPageRouter',
-              page: SeasonEpisodesPage,
-            ),
-
-             AutoRoute(
-              path: 'episode_info',
-              name: 'EpisodeInfoRouter',
-              page: EpisodeInfoPage,
-            ),
+    AutoRoute(
+      path: 'seasons_list',
+      name: 'SeasonsListRoute',
+      page: SeasonsListPage,
+    ),
+    AutoRoute(
+      path: 'season_episodes_list',
+      name: 'SeasonEpisodesPageRouter',
+      page: SeasonEpisodesPage,
+    ),
+    AutoRoute(
+      path: 'episode_info',
+      name: 'EpisodeInfoRouter',
+      page: EpisodeInfoPage,
+    ),
   ],
-
-
-  
-
-          
 )
 class $AppRouter {}

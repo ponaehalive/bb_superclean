@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/episode_info_page/episode_info_vm.dart';
+import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
 class MainInfoTab extends StatefulWidget {
   const MainInfoTab({Key? key}) : super(key: key);
@@ -29,9 +30,15 @@ class _MainInfoTabState extends State<MainInfoTab> {
                     children: [
                       const Text(
                         'Season:  ',
+                        style: TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                       Text(
                         viewModel.selectedEpisode?.season ?? '',
+                        style: const TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -40,9 +47,15 @@ class _MainInfoTabState extends State<MainInfoTab> {
                     children: [
                       const Text(
                         'Episode:  ',
+                        style: TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                       Text(
                         viewModel.selectedEpisode?.episodeNumber ?? '',
+                        style: const TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -51,15 +64,24 @@ class _MainInfoTabState extends State<MainInfoTab> {
                     children: [
                       const Text(
                         'Air Date:  ',
+                        style: TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                       Text(
                         viewModel.airDayFormatted ?? '',
+                        style: const TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 40),
                   Text(
                     viewModel.selectedEpisode?.title ?? '',
+                    style: const TextStyle(
+                      color: AppColors.white,
+                    ),
                   ),
                 ],
               ),

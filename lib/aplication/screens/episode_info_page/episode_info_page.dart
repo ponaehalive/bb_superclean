@@ -53,7 +53,7 @@ class _EpisodeInfoPageState extends State<EpisodeInfoPage> {
                     padding: EdgeInsets.symmetric(horizontal: 5.0),
                     child: TabViews(
 
-                        // videoController: controller
+                      
                         ),
                   );
                 },

@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 */
 
-
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:superclean/domain/services/end_points.dart';
@@ -17,7 +16,7 @@ class Provider {
 
   Provider() {
     BaseOptions options = BaseOptions(
-      baseUrl: EndPoints.baseUrl,
+      baseUrl: BBEndPoints.baseUrl,
       receiveDataWhenStatusError: true,
       connectTimeout: 60 * 1000, //60 seconds
       receiveTimeout: 60 * 1000,
@@ -38,8 +37,8 @@ class Provider {
 //dio response
   Future<List<dynamic>> getCharacters() async {
     try {
-      Response response = await dio.get(EndPoints.allCharacters);
-     
+      Response response = await dio.get(BBEndPoints.allCharacters);
+
       return response.data;
     } catch (e) {
       print("some Error $e");
@@ -47,19 +46,16 @@ class Provider {
     }
   }
 
- Future<List<dynamic>> getAllBBEpisodes() async {
+  Future<List<dynamic>> getAllBBEpisodes() async {
     try {
-      Response response = await dio.get(EndPoints.allBBEpisodes);
-     
+      Response response = await dio.get(BBEndPoints.allBBEpisodes);
+
       return response.data;
     } catch (e) {
       print("some Error $e");
       return [];
     }
   }
-
-
-
 
 /*http response
    Future<List<CharacterModel>> getCharactersHttp() async {

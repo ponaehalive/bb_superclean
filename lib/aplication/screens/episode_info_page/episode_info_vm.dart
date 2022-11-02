@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:pod_player/pod_player.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/models/episode_model.dart';
 import 'package:superclean/service_locator.dart';
@@ -11,6 +12,13 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
   final _episodesBloc = ServiceLocator.instace.episodesBloc;
   final _appRouter = ServiceLocator.instace.router;
 
+  final String? recording = 'https://youtu.be/A3ltMaM6noM';
+
+  /* 
+  PodPlayerController controller = PodPlayerController(
+    playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/A3ltMaM6noM'),
+  );
+ */
   StreamSubscription? _episodesBlocSubscription;
 
   EpisodeInfoViewModel() {
@@ -20,17 +28,28 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
 
   @override
   void dispose() {
+    print('dispose trailer');
+
     super.dispose();
     _episodesBlocSubscription?.cancel();
   }
 
   void init() {}
 
+  /*  void playVideo() {
+    print('trailer tab init');
+    controller = PodPlayerController(
+      playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/A3ltMaM6noM'),
+    )..initialise();
+  } */
+
   List<EpisodeModel> get allBBEpisodes =>
       _episodesBloc.state.loadedBBEpisodes ?? [];
 
   void backToSelectedSeasonEpisodes() {
-    _appRouter.push(const SeasonEpisodesPageRouter());
+    //not work
+     _appRouter.push(const SeasonEpisodesPageRouter());
+    print('back');
   }
 
   void goToCharacterInfoPage() {}
@@ -56,4 +75,7 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
 
   String get appBarText =>
       'Season ${_episodesBloc.state.selectedSeasonNumber} Episodes';
+
+  List<dynamic> get characters =>
+      _episodesBloc.state.selectedEpisode?.characters ?? [];
 }
