@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
-import 'package:superclean/domain/services/auth_api_provider.dart';
 import 'package:superclean/domain/services/auth_service.dart';
+import 'package:superclean/domain/services/session_data_provider.dart';
 import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
@@ -12,6 +12,7 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   String authErrorTittle = '';
   bool canSubmit = false;
   final _authService = AuthService();
+  final _sessionDataProvider = SessionDataProvider();
   bool isAuthorized = false;
 
   TextEditingController loginController = TextEditingController();
@@ -49,19 +50,28 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   Future<void> onAuthButtonPress() async {
+    if (login.isEmpty || password.isEmpty) {
+      authErrorTittle = 'Заполните логин и пароль';
+
+      notifyListeners();
+      return;
+    }
     authErrorTittle = '';
     notifyListeners();
-    if (login.isEmpty || password.isEmpty) return;
+    String? sessionId;
     {
       try {
-        await _authService.newLogin(login, password);
+        sessionId = await _authService.login(login, password);
+
         notifyListeners();
-        //goHome();
-      } on AuthApiProviderError {
-        authErrorTittle = 'not correct login or password';
-        notifyListeners();
-      } catch (exception) {
-        authErrorTittle = 'Ашипка';
+
+        if (sessionId == null) {
+          return;
+        }
+        await _sessionDataProvider.setSessionId(sessionId);
+        goHome();
+      } catch (e) {
+        authErrorTittle = 'error';
         notifyListeners();
       }
     }

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:superclean/domain/services/end_points.dart';
+
 
 abstract class AuthApiProviderError {}
 
@@ -14,6 +16,7 @@ class AuthApiProvider {
       connectTimeout: 60 * 1000, //60 seconds
       receiveTimeout: 60 * 1000,
       sendTimeout: 10000,
+      
     );
     dio = Dio(options);
     dio.interceptors.add(
@@ -49,7 +52,7 @@ class AuthApiProvider {
       final token = response.data['request_token'];
       return token;
     } catch (e) {
-      print('auth make request_token Error $e');
+     
       return '';
     }
   }
@@ -71,7 +74,7 @@ class AuthApiProvider {
 
       return response.data['request_token'];
     } catch (e) {
-      print('auth validate token with login Error $e');
+     
       return '';
     }
   }
@@ -87,7 +90,7 @@ class AuthApiProvider {
 
       return response.data['session_id'];
     } catch (e) {
-      print("auth make session_id Error $e");
+       
       return '';
     }
   }

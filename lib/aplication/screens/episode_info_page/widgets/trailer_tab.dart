@@ -39,7 +39,7 @@ class _TrailerTabState extends State<TrailerTab> {
 import 'package:flutter/material.dart';
 import 'package:pod_player/pod_player.dart';
 import 'package:provider/provider.dart';
-import 'package:superclean/aplication/screens/characters_page/characters_page_vm.dart';
+
 import 'package:superclean/aplication/screens/episode_info_page/episode_info_vm.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 

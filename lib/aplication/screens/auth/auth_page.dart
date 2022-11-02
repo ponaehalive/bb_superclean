@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/auth/auth_vm.dart';
-import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);

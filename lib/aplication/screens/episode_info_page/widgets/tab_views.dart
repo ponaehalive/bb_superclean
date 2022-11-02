@@ -9,7 +9,7 @@ class TabViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(
+    return const TabBarView(
       physics: BouncingScrollPhysics(),
       children: [
         MainInfoTab(),

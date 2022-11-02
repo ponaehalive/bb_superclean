@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:pod_player/pod_player.dart';
+//import 'package:pod_player/pod_player.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/models/episode_model.dart';
 import 'package:superclean/service_locator.dart';
@@ -28,7 +28,7 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
 
   @override
   void dispose() {
-    print('dispose trailer');
+    //print('dispose trailer');
 
     super.dispose();
     _episodesBlocSubscription?.cancel();
@@ -49,7 +49,7 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
   void backToSelectedSeasonEpisodes() {
     //not work
      _appRouter.push(const SeasonEpisodesPageRouter());
-    print('back');
+
   }
 
   void goToCharacterInfoPage() {}

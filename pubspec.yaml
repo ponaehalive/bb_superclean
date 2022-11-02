@@ -35,6 +35,8 @@ dependencies:
   injectable: ^1.5.3
   pod_player: ^0.1.0
   shared_preferences: ^2.0.15
+  global_snack_bar: ^0.0.12
+  flutter_secure_storage: ^6.0.0
 
 dev_dependencies:
   flutter_test:
