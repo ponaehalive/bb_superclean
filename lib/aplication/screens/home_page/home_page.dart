@@ -33,6 +33,9 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        const SizedBox(
+                          height: 5,
+                        ),
                         MovieCard(
                           image: 'assets/images/brbadlogo.jpg',
                           onTap: viewModel.goToBBSeasonsList,
@@ -49,13 +52,16 @@ class _HomePageState extends State<HomePage> {
                         ),
                         MovieCard(
                           image: 'assets/images/elcaminologo.jpg',
-                          onTap: () =>SessionDataProvider().setSessionId(null),
+                          onTap: () => SessionDataProvider().setSessionId(null),
+                        ),
+                        const SizedBox(
+                          height: 5,
                         ),
                       ],
                     ),
                   ),
                 ),
-              ), 
+              ),
             ),
           );
         },
