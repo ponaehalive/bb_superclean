@@ -1,13 +1,12 @@
-import 'package:superclean/domain/services/session_data_provider.dart';
+import 'package:superclean/domain/services/auth_service.dart';
 
 class MyAppViewModel {
-  final _sessionDataProvider = SessionDataProvider();
-  var _isAuth = false;
-
+  final _authService = AuthService();
+  bool _isAuth = false;
   bool get isAuth => _isAuth;
 
   Future<void> checkAuth() async {
-    final sessionId = await _sessionDataProvider.getSessionId();
-    _isAuth = sessionId != null;
+    final sessionAuth = await _authService.checkAuth();
+    _isAuth = sessionAuth;
   }
 }

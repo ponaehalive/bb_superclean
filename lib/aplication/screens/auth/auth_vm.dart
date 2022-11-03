@@ -60,20 +60,16 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     notifyListeners();
     String? sessionId;
     {
-      try {
-        sessionId = await _authService.login(login, password);
+      sessionId = await _authService.login(
+        login,
+        password,
+      );
 
-        notifyListeners();
-
-        if (sessionId == null) {
-          return;
-        }
-        await _sessionDataProvider.setSessionId(sessionId);
-        goHome();
-      } catch (e) {
-        authErrorTittle = 'error';
-        notifyListeners();
+      if (sessionId == null) {
+        return;
       }
+      await _sessionDataProvider.setSessionId(sessionId);
+      goHome();
     }
   }
 }

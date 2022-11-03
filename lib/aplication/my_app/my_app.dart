@@ -5,11 +5,10 @@ import 'package:superclean/aplication/ui/themes/app_theme.dart';
 import 'package:superclean/service_locator.dart';
 
 class MyApp extends StatelessWidget {
- 
-  final  MyAppViewModel model;
+  final MyAppViewModel model;
   final _appRouter = ServiceLocator.instace.router;
 
-  MyApp({Key? key, required this.model }) : super (key: key);
+  MyApp({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/*
-MaterialApp.router(
-            routerDelegate: AutoRouterDelegate.declarative(   
-                _appRouter,
-                routes: (_) => [
-                  // if the user is logged in, they may proceed to the main App
-                  if (authService().isLoggedIn)
-                    HomeRoute()
-                  // if they are not logged in, bring them to the Login page 
-                  else
-                    LoginWrapperRoute(onLogin: () => authService().logIn),
-                ],
-            ),
-            routeInformationParser:
-                _appRouter.defaultRouteParser(includePrefixMatches: true));
-    }
-}*/

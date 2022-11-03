@@ -1,12 +1,5 @@
 // ignore_for_file: avoid_print
 
-/* 
-for http response
-import 'package:superclean/domain/models/character_model.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-*/
-
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:superclean/domain/services/end_points.dart';

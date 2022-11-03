@@ -18,3 +18,8 @@ class TMDBEndPoints {
   static const String makeSession =
       'authentication/session/new?api_key=$_apiKey';
 }
+//https://image.tmdb.org/t/p/original/f02FFv77Rh62633YEjimv7C6JM3.jpg
+
+//https://api.themoviedb.org/3/tv/1396/season/1?api_key=65582b30bb06ed4b6267cfd6cb5230a5&language=en-US
+
+//https://api.themoviedb.org/3/tv/1396?api_key=65582b30bb06ed4b6267cfd6cb5230a5&language=en-US
