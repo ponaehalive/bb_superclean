@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -58,6 +57,7 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
         } finally {}
       }
     }
+     notifyListeners();
   }
 
   void bobob() {
@@ -68,6 +68,7 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
+     notifyListeners();
   }
 
   void changeLogin(String value) {

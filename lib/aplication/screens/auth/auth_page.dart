@@ -46,7 +46,7 @@ class _AuthPageState extends State<AuthPage> {
                         height: 20,
                       ),
                       TextButton(
-                        onPressed: ()=>viewModel.googleSignIn(),
+                        onPressed: () => viewModel.googleSignIn(),
                         child: const Text('google sign in'),
                       ),
                       const SizedBox(
@@ -59,10 +59,14 @@ class _AuthPageState extends State<AuthPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      TextButton(
-                        onPressed: ()=>viewModel.bobob(),
-                        child: Text(viewModel.currentUser?.email??''),
-                      )
+                      viewModel.selector<AuthViewModel, String?>(
+                          selector: () => viewModel.currentUser?.email,
+                          builder: (ctx, _) {
+                            return TextButton(
+                              onPressed: () => viewModel.bobob(),
+                              child: Text(viewModel.currentUser?.email ?? ''),
+                            );
+                          }),
                     ],
                   ),
                 ),
