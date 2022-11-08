@@ -38,6 +38,10 @@ dependencies:
   global_snack_bar: ^0.0.12
   flutter_secure_storage: ^6.0.0
   fluttertoast: ^8.1.1
+  firebase_core: ^2.1.1
+  firebase_database: ^10.0.4
+  google_sign_in: ^5.4.2
+  firebase_auth: ^4.1.1
 
 dev_dependencies:
   flutter_test:

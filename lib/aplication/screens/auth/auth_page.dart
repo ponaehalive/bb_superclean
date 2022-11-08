@@ -42,6 +42,27 @@ class _AuthPageState extends State<AuthPage> {
                         height: 20,
                       ),
                       _buttonWidget(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextButton(
+                        onPressed: ()=>viewModel.googleSignIn(),
+                        child: const Text('google sign in'),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextButton(
+                        onPressed: () => viewModel.logOut(),
+                        child: const Text('LOGOUT'),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextButton(
+                        onPressed: ()=>viewModel.bobob(),
+                        child: Text(viewModel.currentUser?.email??''),
+                      )
                     ],
                   ),
                 ),

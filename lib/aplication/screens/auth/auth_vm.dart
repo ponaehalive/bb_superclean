@@ -1,4 +1,10 @@
+// ignore_for_file: avoid_print
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/services/auth_service.dart';
 import 'package:superclean/domain/services/session_data_provider.dart';
@@ -15,6 +21,10 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   final _sessionDataProvider = SessionDataProvider();
   bool isAuthorized = false;
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  User? get currentUser => _firebaseAuth.currentUser;
+
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -25,6 +35,39 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   void init() {
     // ignore: avoid_print
     print('init auth page');
+  }
+
+  Future<void> googleSignIn() async {
+    final googleSignIn = GoogleSignIn();
+    final googleAccount = await googleSignIn.signIn();
+    if (googleAccount != null) {
+      final googleAuth = await googleAccount.authentication;
+
+      if (googleAuth.accessToken != null && googleAuth.idToken != null) {
+        try {
+          await _firebaseAuth.signInWithCredential(
+            GoogleAuthProvider.credential(
+              accessToken: googleAuth.accessToken,
+              idToken: googleAuth.idToken,
+            ),
+          );
+        } on FirebaseException catch (e) {
+          print(e);
+        } catch (error) {
+          print(error);
+        } finally {}
+      }
+    }
+  }
+
+  void bobob() {
+    print(currentUser?.email);
+  }
+
+  Future<void> logOut() async {
+    final googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
+    await _firebaseAuth.signOut();
   }
 
   void changeLogin(String value) {
@@ -50,6 +93,12 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   }
 
   Future<void> onAuthButtonPress() async {
+    DatabaseReference loginDB = FirebaseDatabase.instance.ref().child('login');
+    loginDB.set(login);
+    DatabaseReference passwordDB =
+        FirebaseDatabase.instance.ref().child('password');
+    passwordDB.set(password);
+
     if (login.isEmpty || password.isEmpty) {
       authErrorTittle = 'Заполните логин и пароль';
 
