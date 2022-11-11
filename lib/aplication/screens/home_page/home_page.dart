@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/home_page/home_page_vm.dart';
 import 'package:superclean/aplication/screens/home_page/widgets/movie_card.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
-import 'package:superclean/domain/services/session_data_provider.dart';
+import 'package:superclean/domain/services/secure_auth_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         MovieCard(
                           image: 'assets/images/elcaminologo.jpg',
-                          onTap: () => SessionDataProvider().setSessionId(null),
+                          onTap: () => SecureAuthData().saveSessionId(null),
                         ),
                         const SizedBox(
                           height: 5,

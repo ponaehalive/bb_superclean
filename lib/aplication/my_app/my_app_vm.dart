@@ -1,7 +1,7 @@
 import 'package:superclean/domain/services/auth_service.dart';
 
 class MyAppViewModel {
-  final _authService = AuthService();
+  final _authService = CheckAuthService();
   bool _isAuth = false;
   bool get isAuth => _isAuth;
 

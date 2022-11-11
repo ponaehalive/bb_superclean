@@ -8,4 +8,8 @@ class LoginEvent extends AuthEvent {
     required this.userName,
     required this.password,
   });
+
+  
 }
+
+

@@ -7,11 +7,11 @@ import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/bloc/auth/auth_event.dart';
 import 'package:superclean/domain/bloc/auth/auth_state.dart';
 import 'package:superclean/domain/services/auth_repository.dart';
-import 'package:superclean/domain/services/session_data_provider.dart';
+import 'package:superclean/domain/services/secure_auth_data.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository = AuthRepository();
-  final _sessionDataProvider = SessionDataProvider();
+  final _secureAuthData = SecureAuthData();
   final _appRouter = GetIt.instance<AppRouter>();
 
   AuthBloc() : super(AuthState.initial) {
@@ -51,7 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
 
           //save sessionId to secureStorage
-          await _sessionDataProvider.setSessionId(sessionId);
+          await _secureAuthData.saveSessionId(sessionId);
           //save login&password to firebase db
           DatabaseReference loginDB =
               FirebaseDatabase.instance.ref().child('login');
@@ -59,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           DatabaseReference passwordDB =
               FirebaseDatabase.instance.ref().child('password');
           passwordDB.set(event.password);
-         
+
           if (state.sessionId != null && state.sessionId != '') {
             await _appRouter.push(
               const AutoTabsScaffoldRoute(),

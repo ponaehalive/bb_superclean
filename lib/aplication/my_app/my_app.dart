@@ -6,7 +6,6 @@ import 'package:superclean/aplication/ui/themes/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   final MyAppViewModel model;
-  //final _appRouter = ServiceLocator.instace.router;
   final _appRouter = GetIt.instance<AppRouter>();
   MyApp({Key? key, required this.model}) : super(key: key);
 

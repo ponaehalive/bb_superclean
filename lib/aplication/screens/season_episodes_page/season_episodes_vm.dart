@@ -8,10 +8,8 @@ import 'package:superclean/domain/models/episode_model.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
 class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
- 
-   final _episodesBloc = GetIt.instance<EpisodesBloc>();
-    final _appRouter = GetIt.instance<AppRouter>();
- // final _appRouter = ServiceLocator.instace.router;
+  final _episodesBloc = GetIt.instance<EpisodesBloc>();
+  final _appRouter = GetIt.instance<AppRouter>();
 
   StreamSubscription? _episodesBlocSubscription;
 

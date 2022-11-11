@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:superclean/aplication/my_app/my_app.dart';
 import 'package:superclean/aplication/my_app/my_app_vm.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:superclean/service_locator.dart';
+import 'package:superclean/get_it_sl.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,9 +12,6 @@ void main() async {
 
   await Firebase.initializeApp(
       name: "dev project", options: DefaultFirebaseOptions.currentPlatform);
-/* 
-   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, */
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

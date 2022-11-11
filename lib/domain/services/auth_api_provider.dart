@@ -83,7 +83,6 @@ class AuthApiProvider {
     } on DioError catch (e) {
       final errorMessage = e.response?.data['status_message'];
       final statusMessage = e.response?.statusMessage;
-      
 
       Fluttertoast.showToast(
           msg: '$errorMessage \n $statusMessage',
