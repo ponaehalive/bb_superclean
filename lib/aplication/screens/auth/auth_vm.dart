@@ -1,42 +1,56 @@
 // ignore_for_file: avoid_print
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:get_it/get_it.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
-import 'package:superclean/domain/services/auth_service.dart';
-import 'package:superclean/domain/services/session_data_provider.dart';
-import 'package:superclean/service_locator.dart';
+import 'package:superclean/domain/bloc/auth/auth_bloc.dart';
+import 'package:superclean/domain/bloc/auth/auth_event.dart';
+
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
 class AuthViewModel extends ChangeNotifier with BaseViewModel {
-  final _appRouter = ServiceLocator.instace.router;
+  final _authBloc = GetIt.instance<AuthBloc>();
+  final _appRouter = GetIt.instance<AppRouter>();
+
   String login = '';
   String password = '';
-  String authErrorTittle = '';
+
   bool canSubmit = false;
-  final _authService = AuthService();
-  final _sessionDataProvider = SessionDataProvider();
+
   bool isAuthorized = false;
-
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-  User? get currentUser => _firebaseAuth.currentUser;
-
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  //User? get googleCurrentUser => _firebaseAuth.currentUser;
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  StreamSubscription? _authBlocSubscription;
+
+  AuthViewModel() {
+    _authBlocSubscription = _authBloc.stream.listen((_) => notifyListeners());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _authBlocSubscription?.cancel();
+  }
+
+  void init() {
+
+    print('init auth page');
+  }
 
   void goHome() {
     _appRouter.push(const AutoTabsScaffoldRoute());
   }
 
-  void init() {
-    // ignore: avoid_print
-    print('init auth page');
-  }
+  /*
+ //Google Sign In
 
-  Future<void> googleSignIn() async {
+   Future<void> googleSignIn() async {
     final googleSignIn = GoogleSignIn();
     final googleAccount = await googleSignIn.signIn();
     if (googleAccount != null) {
@@ -57,19 +71,15 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
         } finally {}
       }
     }
-     notifyListeners();
-  }
+    notifyListeners();
+  } */
 
-  void bobob() {
-    print(currentUser?.email);
-  }
-
-  Future<void> logOut() async {
+  /* Future<void> googleLogOut() async {
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
-     notifyListeners();
-  }
+    notifyListeners();
+  } */
 
   void changeLogin(String value) {
     login = loginController.text;
@@ -93,33 +103,14 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     }
   }
 
-  Future<void> onAuthButtonPress() async {
-    DatabaseReference loginDB = FirebaseDatabase.instance.ref().child('login');
-    loginDB.set(login);
-    DatabaseReference passwordDB =
-        FirebaseDatabase.instance.ref().child('password');
-    passwordDB.set(password);
-
-    if (login.isEmpty || password.isEmpty) {
-      authErrorTittle = 'Заполните логин и пароль';
-
-      notifyListeners();
-      return;
-    }
-    authErrorTittle = '';
-    notifyListeners();
-    String? sessionId;
-    {
-      sessionId = await _authService.login(
-        login,
-        password,
-      );
-
-      if (sessionId == null) {
-        return;
-      }
-      await _sessionDataProvider.setSessionId(sessionId);
-      goHome();
-    }
+  Future<void> tryLogin() async {
+    _authBloc.add(
+      LoginEvent(
+        userName: login,
+        password: password,
+      ),
+    );
   }
+
+  String get sesid => _authBloc.state.sessionId;
 }

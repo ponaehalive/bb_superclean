@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/auth/auth_vm.dart';
@@ -29,10 +31,6 @@ class _AuthPageState extends State<AuthPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _errorTitleWidget(),
-                      const SizedBox(
-                        height: 20,
-                      ),
                       _loginWidget(),
                       const SizedBox(
                         height: 20,
@@ -45,28 +43,7 @@ class _AuthPageState extends State<AuthPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      TextButton(
-                        onPressed: () => viewModel.googleSignIn(),
-                        child: const Text('google sign in'),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextButton(
-                        onPressed: () => viewModel.logOut(),
-                        child: const Text('LOGOUT'),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      viewModel.selector<AuthViewModel, String?>(
-                          selector: () => viewModel.currentUser?.email,
-                          builder: (ctx, _) {
-                            return TextButton(
-                              onPressed: () => viewModel.bobob(),
-                              child: Text(viewModel.currentUser?.email ?? ''),
-                            );
-                          }),
+                     
                     ],
                   ),
                 ),
@@ -105,23 +82,8 @@ class _AuthPageState extends State<AuthPage> {
       selector: () => viewModel.canSubmit,
       builder: (ctx, _) {
         return ElevatedButton(
-          onPressed: viewModel.canSubmit ? viewModel.onAuthButtonPress : null,
+          onPressed: viewModel.canSubmit ? viewModel.tryLogin : null,
           child: const Text('press me'),
-        );
-      },
-    );
-  }
-
-  Widget _errorTitleWidget() {
-    return viewModel.selector<AuthViewModel, String>(
-      selector: () => viewModel.authErrorTittle,
-      builder: (ctx, _) {
-        return Text(
-          viewModel.authErrorTittle,
-          style: const TextStyle(
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-          ),
         );
       },
     );

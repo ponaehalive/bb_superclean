@@ -5,6 +5,9 @@ import 'package:superclean/domain/models/character_model.dart';
 import 'package:superclean/domain/services/characters_repository.dart';
 
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
+
+
+  
   final CharacterRepository characterRepository = CharacterRepository();
   CharactersBloc() : super(CharactersState.initial) {
     on<CharactersLoadEvent>(

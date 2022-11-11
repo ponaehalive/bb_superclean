@@ -1,16 +1,19 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 //import 'package:pod_player/pod_player.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
+import 'package:superclean/domain/bloc/episodes/episodes_bloc.dart';
 import 'package:superclean/domain/models/episode_model.dart';
-import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 import 'package:superclean/src/utils/date_time_formatter.dart';
 
 class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
-  final _episodesBloc = ServiceLocator.instace.episodesBloc;
-  final _appRouter = ServiceLocator.instace.router;
+ 
+
+  final _episodesBloc = GetIt.instance<EpisodesBloc>();
+  final _appRouter = GetIt.instance<AppRouter>();
 
   final String? recording = 'https://youtu.be/A3ltMaM6noM';
 
@@ -48,8 +51,7 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
 
   void backToSelectedSeasonEpisodes() {
     //not work
-     _appRouter.push(const SeasonEpisodesPageRouter());
-
+    _appRouter.push(const SeasonEpisodesPageRouter());
   }
 
   void goToCharacterInfoPage() {}

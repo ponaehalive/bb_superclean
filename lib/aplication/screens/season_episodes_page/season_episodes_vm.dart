@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
+import 'package:superclean/domain/bloc/episodes/episodes_bloc.dart';
 import 'package:superclean/domain/bloc/episodes/episodes_event.dart';
 import 'package:superclean/domain/models/episode_model.dart';
-import 'package:superclean/service_locator.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
 class SeasonEpisodesViewModel extends ChangeNotifier with BaseViewModel {
-  final _episodesBloc = ServiceLocator.instace.episodesBloc;
-  final _appRouter = ServiceLocator.instace.router;
+ 
+   final _episodesBloc = GetIt.instance<EpisodesBloc>();
+    final _appRouter = GetIt.instance<AppRouter>();
+ // final _appRouter = ServiceLocator.instace.router;
 
   StreamSubscription? _episodesBlocSubscription;
 
