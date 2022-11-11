@@ -26,7 +26,7 @@ class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
 
   void init() {
     // ignore: avoid_print
-    print('all characters page init');
+    print('Init all characters page');
     if (allCharacters.isEmpty) {
       _charactersBloc.add(
         CharactersLoadEvent(),

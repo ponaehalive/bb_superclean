@@ -8,15 +8,12 @@ import 'package:superclean/src/base_elements/base_view_model.dart';
 class HomePageViewModel extends ChangeNotifier with BaseViewModel {
     final _appRouter = GetIt.instance<AppRouter>();
 
-  String peremen = 'urarara';
+  String peremen = '';
 
-  void change() {
-    peremen = 'nononon';
-    notifyListeners();
-  }
+
 
   void init() {
-    print('init 1 page');
+    print('Init main page');
   }
 
   void goToBBSeasonsList() => _appRouter.push(
