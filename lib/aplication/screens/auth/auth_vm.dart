@@ -112,6 +112,9 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     );
   }
 
+
+  
+
   void setLocale(context) {
     if (EasyLocalization.of(context)?.locale.countryCode == 'RU') {
       EasyLocalization.of(context)?.setLocale(

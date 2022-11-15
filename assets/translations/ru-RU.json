@@ -3,5 +3,6 @@
     "language_name": "русский",
     "password": "пароль",
     "user_name": "имя пользователя",
+    "enter_like_guest":"войти как гость",
     "login":"вход"
   }

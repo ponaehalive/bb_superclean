@@ -27,71 +27,88 @@ class _AuthPageState extends State<AuthPage> {
           selector: () => viewModel.isAuthorized,
           builder: (ctx, _) {
             return Scaffold(
-              backgroundColor: Colors.amber,
-              body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _loginWidget(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      _passwordWidget(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      _buttonWidget(),
+              body: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/login_background.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _loginWidget(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        _passwordWidget(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        _buttonWidget(),
 
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextButton(
-                        onPressed: () => viewModel.setLocale(context),
-                        child: Text('change_language'.tr()),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextButton(
+                          onPressed: () => viewModel.setLocale(context),
+                          child: Text(
+                            'change_language'.tr(),
+                            style: TextStyles.labelStyle,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        TextButton(
+                          onPressed: () => viewModel.goHome(),
+                          child: Text(
+                            'enter_like_guest'.tr(),
+                            style: TextStyles.labelStyle,
+                          ),
+                        ),
 
-                      //google sign in/out part
+                        //google sign in/out part
 
-                      /*   viewModel.selector<AuthViewModel, bool?>(
-                        selector: () =>
-                            viewModel.googleCurrentUser?.isAnonymous,
-                        builder: (ctx, _) {
-                          return viewModel.googleCurrentUser != null
-                              ? TextButton(
-                                  onPressed: viewModel.googleLogOut,
-                                  child: const Text('Log out'),
-                                )
-                              : TextButton(
-                                  onPressed: viewModel.googleSignIn,
-                                  child: const Text('Log in'),
-                                );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: viewModel.selector<AuthViewModel, bool?>(
+                        /*   viewModel.selector<AuthViewModel, bool?>(
                           selector: () =>
                               viewModel.googleCurrentUser?.isAnonymous,
                           builder: (ctx, _) {
-                            return CustomImage(
-                              viewModel.googleCurrentUser?.photoURL,
-                              height: double.infinity,
-                              width: double.infinity,
-                            );
+                            return viewModel.googleCurrentUser != null
+                                ? TextButton(
+                                    onPressed: viewModel.googleLogOut,
+                                    child: const Text('Log out'),
+                                  )
+                                : TextButton(
+                                    onPressed: viewModel.googleSignIn,
+                                    child: const Text('Log in'),
+                                  );
                           },
                         ),
-                      ), */
-                    ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: viewModel.selector<AuthViewModel, bool?>(
+                            selector: () =>
+                                viewModel.googleCurrentUser?.isAnonymous,
+                            builder: (ctx, _) {
+                              return CustomImage(
+                                viewModel.googleCurrentUser?.photoURL,
+                                height: double.infinity,
+                                width: double.infinity,
+                              );
+                            },
+                          ),
+                        ), */
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -103,23 +120,55 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Widget _loginWidget() {
-    return TextField(
+    return TextFormField(
+      style: TextStyles.titleFont.copyWith(
+        color: AppColors.white,
+      ),
       controller: viewModel.loginController,
       onChanged: viewModel.changeLogin,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: const BorderSide(
+            color: AppColors.white,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: const BorderSide(
+            color: AppColors.white72,
+            width: 2.0,
+          ),
+        ),
         border: const OutlineInputBorder(),
         labelText: 'user_name'.tr(),
+        labelStyle: TextStyles.labelStyle,
       ),
     );
   }
 
   Widget _passwordWidget() {
-    return TextField(
+    return TextFormField(
+      style: TextStyles.labelStyle,
       controller: viewModel.passwordController,
       onChanged: viewModel.changePassword,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: const BorderSide(
+            color: AppColors.white,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: const BorderSide(
+            color: AppColors.white72,
+            width: 2.0,
+          ),
+        ),
         border: const OutlineInputBorder(),
         labelText: 'password'.tr(),
+        labelStyle: TextStyles.labelStyle,
       ),
     );
   }
