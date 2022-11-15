@@ -5,11 +5,12 @@ import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/bloc/characters/characters_bloc.dart';
 import 'package:superclean/domain/bloc/characters/characters_event.dart';
 import 'package:superclean/domain/models/character_model.dart';
+
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
 class CharactersPageViewModel extends ChangeNotifier with BaseViewModel {
   final _charactersBloc = GetIt.instance<CharactersBloc>();
-  //final _appRouter = ServiceLocator.instace.router;
+
   final _appRouter = GetIt.instance<AppRouter>();
   StreamSubscription? _charactersBlocSubscription;
 
