@@ -1,4 +1,6 @@
-class CharacterModel {
+import 'package:superclean/domain/models/roles_model.dart';
+
+class ActorModel {
 /*   int? charId;
   String? name;
   String? birthDay;
@@ -7,10 +9,11 @@ class CharacterModel {
   String? nakeName;
   String? actorName;
   String? category; */
-  String? character;
+  String? actorName;
   String? profilePath;
+  List<RolesModel>? roles;
 
-  CharacterModel({
+  ActorModel({
 /*     this.charId,
     this.name,
     this.birthDay,
@@ -19,11 +22,12 @@ class CharacterModel {
     this.nakeName,
     this.actorName,
     this.category, */
-    this.character,
+    this.actorName,
     this.profilePath,
+    this.roles,
   });
 
-  CharacterModel.fromJson(Map<String, dynamic> json) {
+  ActorModel.fromJson(Map<String, dynamic> json) {
     /*    charId = json['char_id'];
     name = json['name'];
     birthDay = json['birthday'];
@@ -32,7 +36,11 @@ class CharacterModel {
     nakeName = json['nickname'];
     actorName = json['portrayed'];
     category = json['category']; */
-    character = json['name'];
+    actorName = json['name'];
     profilePath = json['profile_path'];
+
+    roles = List<dynamic>.from(json['roles'])
+        .map((i) => RolesModel.fromJson(i))
+        .toList();
   }
 }

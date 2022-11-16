@@ -42,7 +42,19 @@ class Provider {
 
   Future<List<dynamic>> getAllBBEpisodes() async {
     try {
-      Response response = await dio.get(BBEndPoints.allBBEpisodes);
+      Response response = await Dio(
+        BaseOptions(
+          baseUrl: BBEndPoints.baseUrl,
+
+          receiveDataWhenStatusError: true,
+          connectTimeout: 60 * 1000, //60 seconds
+          receiveTimeout: 60 * 1000,
+          sendTimeout: 10000,
+        ),
+      ).get(BBEndPoints.allBBEpisodes);
+      print(response.statusCode);
+      print(response.statusMessage);
+      print(response.data);
 
       return response.data;
     } catch (e) {

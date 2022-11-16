@@ -4,13 +4,13 @@ import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
 import 'package:superclean/domain/models/character_model.dart';
 import 'package:superclean/domain/services/end_points.dart';
 
-class CharacterCardWidget extends StatelessWidget {
-  final CharacterModel character;
+class ActorCardWidget extends StatelessWidget {
+  final ActorModel actor;
   final void Function()? onTap;
 
-  const CharacterCardWidget({
+  const ActorCardWidget({
     super.key,
-    required this.character,
+    required this.actor,
     required this.onTap,
   });
 
@@ -39,8 +39,8 @@ class CharacterCardWidget extends StatelessWidget {
               CustomImage(
                 //character.image,
 
-                (character.profilePath != null)
-                    ? TMDBEndPoints.image + character.profilePath!
+                (actor.profilePath != null)
+                    ? TMDBEndPoints.image + actor.profilePath!
                     : '',
                 height: double.infinity,
                 width: double.infinity,
@@ -58,8 +58,7 @@ class CharacterCardWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          //character.name ?? '',
-                          character.character ?? '',
+                          actor.actorName ?? '',
                           textAlign: TextAlign.center,
                           style: const TextStyle(color: AppColors.primaryText),
                         ),

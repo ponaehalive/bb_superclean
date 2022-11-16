@@ -18,7 +18,7 @@ import 'package:flutter/material.dart' as _i12;
 import '../screens/auth/auth_page.dart' as _i1;
 import '../screens/auto_tabs_scaffold_page.dart' as _i2;
 import '../screens/character_details_page/character_details_page.dart' as _i10;
-import '../screens/characters_page/characters_page.dart' as _i9;
+import '../screens/actors_page/actors_page.dart' as _i9;
 import '../screens/episode_info_page/episode_info_page.dart' as _i5;
 import '../screens/home_page/home_page.dart' as _i8;
 import '../screens/season_episodes_page/season_episodes_page.dart' as _i4;
@@ -88,7 +88,7 @@ class AppRouter extends _i11.RootStackRouter {
     CharactersRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.CharactersPage(),
+        child: const _i9.ActorsPage(),
       );
     },
     CharacterDetailsRoute.name: (routeData) {
@@ -272,7 +272,7 @@ class HomeRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.CharactersPage]
+/// [_i9.ActorsPage]
 class CharactersRoute extends _i11.PageRouteInfo<void> {
   const CharactersRoute()
       : super(

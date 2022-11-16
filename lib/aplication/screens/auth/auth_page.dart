@@ -54,22 +54,25 @@ class _AuthPageState extends State<AuthPage> {
                         _buttonWidget(),
 
                         const SizedBox(
-                          height: 20,
+                          height: 100,
+                        ),
+                        ElevatedButton(
+                          onPressed: () => viewModel.goHome(),
+                          child: Text(
+                            'enter_like_guest'.tr().toUpperCase(),
+                            style: TextStyles.labelStyle.copyWith(
+                              color: AppColors.darkSecondary,
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(
+                          height: 150,
                         ),
                         TextButton(
                           onPressed: () => viewModel.setLocale(context),
                           child: Text(
                             'change_language'.tr(),
-                            style: TextStyles.labelStyle,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 100,
-                        ),
-                        TextButton(
-                          onPressed: () => viewModel.goHome(),
-                          child: Text(
-                            'enter_like_guest'.tr(),
                             style: TextStyles.labelStyle,
                           ),
                         ),
@@ -174,8 +177,8 @@ class _AuthPageState extends State<AuthPage> {
           return ElevatedButton(
             onPressed: viewModel.canSubmit ? viewModel.tryLogin : null,
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.blue,
-              disabledBackgroundColor: AppColors.blue.withOpacity(0.5),
+              backgroundColor: AppColors.button,
+              disabledBackgroundColor: AppColors.button.withOpacity(0.5),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),

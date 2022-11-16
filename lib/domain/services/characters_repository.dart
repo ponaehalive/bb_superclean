@@ -3,18 +3,14 @@
 import 'package:superclean/domain/models/character_model.dart';
 import 'package:superclean/domain/services/provider.dart';
 
-class CharacterRepository {
+class ActorRepository {
   final Provider _provider = Provider();
-  Future<List<CharacterModel>> getAllCharacters() async {
-
-
-    
+  Future<List<ActorModel>> getAllActors() async {
     final characters = await _provider.getCharacters();
 
-    final charactersList = characters
-        .map((character) => CharacterModel.fromJson(character))
-        .toList();
-    
+    final charactersList =
+        characters.map((character) => ActorModel.fromJson(character)).toList();
+
     return charactersList;
   }
 

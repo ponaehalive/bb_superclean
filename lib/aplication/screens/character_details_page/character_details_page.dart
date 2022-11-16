@@ -39,12 +39,12 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                         ),
                         expandedHeight: 460.0,
                         flexibleSpace: FlexibleSpaceBar(
-                        /*   background: CustomImage(
+                            /*   background: CustomImage(
                             viewModel.selectedCharacter?.image,
                             height: 95.0,
                             width: 125.0,
                           ), */
-                        ),
+                            ),
                       ),
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
@@ -66,11 +66,11 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                             label: 'Nick:  ',
                                             /* labelValue: viewModel
                                                 .selectedCharacter?.nakeName, */
-                                                labelValue: viewModel
-                                                .selectedCharacter?.character,
+                                            labelValue: viewModel
+                                                .selectedCharacter?.actorName,
                                           ),
                                           const SizedBox(height: 15),
-                                       /*    _rowWidget(
+                                          /*    _rowWidget(
                                             label: 'Name:  ',
                                             labelValue: viewModel
                                                 .selectedCharacter?.name,
@@ -113,10 +113,6 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
       ),
     );
   }
-
-
-
-
 
   Widget _rowWidget({
     required String label,

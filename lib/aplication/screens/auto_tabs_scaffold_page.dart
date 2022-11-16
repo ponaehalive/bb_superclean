@@ -38,7 +38,7 @@ class AutoTabsScaffoldPage extends StatelessWidget {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Characters',
+              label: 'Actors',
               icon: SvgPicture.asset(
                 AppIcons.faces,
                 color: AppColors.grey,
