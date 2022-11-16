@@ -35,14 +35,14 @@ class CharacterDeatilsViewModel extends ChangeNotifier with BaseViewModel {
     _appRouter.push(const CharactersRoute());
   }
 
-  String? get birthDayFormatted {
+/*   String? get birthDayFormatted {
     if (selectedCharacter!.birthDay != 'Unknown') {
       return AppFormatter.format(
           DateFormat('MM-dd-yyyy').parse(selectedCharacter?.birthDay ?? ''),
           AppFormatter.airdateFormat);
     }
     return 'Unknown';
-  }
+  } */
 
   CharacterModel? get selectedCharacter =>
       charactersBloc.state.selectedCharacter;

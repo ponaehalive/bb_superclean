@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:superclean/aplication/screens/auth/auth_vm.dart';
+import 'package:superclean/aplication/screens/auth/widgets/custom_textfield_widget.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/ui/themes/text_styles.dart';
 //import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
@@ -27,6 +28,7 @@ class _AuthPageState extends State<AuthPage> {
           selector: () => viewModel.isAuthorized,
           builder: (ctx, _) {
             return Scaffold(
+              resizeToAvoidBottomInset: false,
               body: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -120,56 +122,45 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Widget _loginWidget() {
-    return TextFormField(
-      style: TextStyles.titleFont.copyWith(
-        color: AppColors.white,
-      ),
+    return CustomTextField(
       controller: viewModel.loginController,
       onChanged: viewModel.changeLogin,
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-          borderSide: const BorderSide(
-            color: AppColors.white,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-          borderSide: const BorderSide(
-            color: AppColors.white72,
-            width: 2.0,
-          ),
-        ),
-        border: const OutlineInputBorder(),
-        labelText: 'user_name'.tr(),
-        labelStyle: TextStyles.labelStyle,
-      ),
+      obscureText: false,
     );
   }
 
   Widget _passwordWidget() {
-    return TextFormField(
-      style: TextStyles.labelStyle,
-      controller: viewModel.passwordController,
-      onChanged: viewModel.changePassword,
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-          borderSide: const BorderSide(
-            color: AppColors.white,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-          borderSide: const BorderSide(
-            color: AppColors.white72,
-            width: 2.0,
-          ),
-        ),
-        border: const OutlineInputBorder(),
-        labelText: 'password'.tr(),
-        labelStyle: TextStyles.labelStyle,
-      ),
+    return viewModel.selector<AuthViewModel, bool?>(
+      selector: () => viewModel.hidePassword,
+      builder: (ctx, _) {
+        return viewModel.selector<AuthViewModel, bool?>(
+          selector: () => viewModel.isEyeIconActive,
+          builder: (ctx, _) {
+            return CustomTextField(
+              controller: viewModel.passwordController,
+              onChanged: viewModel.changePassword,
+              obscureText: viewModel.hidePassword,
+              icon: viewModel.isEyeIconActive
+                  ? IconButton(
+                      onPressed: viewModel.onEyeTap,
+                      icon: viewModel.hidePassword
+                          ? const Icon(
+                              Icons.visibility_off,
+                              color: AppColors.white,
+                            )
+                          : const Icon(
+                              Icons.visibility,
+                              color: AppColors.white,
+                            ),
+                    )
+                  : Icon(
+                      Icons.visibility_off,
+                      color: AppColors.white.withOpacity(0.2),
+                    ),
+            );
+          },
+        );
+      },
     );
   }
 

@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:superclean/aplication/ui/themes/app_colors.dart';
 
 class CustomImagePlaceholder extends StatelessWidget {
-  const CustomImagePlaceholder({super.key, 
+  const CustomImagePlaceholder({
+    super.key,
     required this.height,
     required this.width,
   });
@@ -18,16 +18,14 @@ class CustomImagePlaceholder extends StatelessWidget {
       width: width,
       height: height,
       decoration: const BoxDecoration(
-        color: AppColors.blue,
+        color: AppColors.grey,
       ),
       child: Center(
         child: SizedBox(
           height: height / 2.25,
-          child: const SizedBox(),
-          //SvgPicture.asset(
-          //  theme.icons.calendar,
-          //  color: AppColors.,
-         // ),
+          child: SvgPicture.asset(
+            'assets/images/stranger.svg',
+          ),
         ),
       ),
     );

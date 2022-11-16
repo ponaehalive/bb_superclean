@@ -9,7 +9,8 @@ class Provider {
 
   Provider() {
     BaseOptions options = BaseOptions(
-      baseUrl: BBEndPoints.baseUrl,
+      //baseUrl: BBEndPoints.baseUrl,
+      baseUrl: TMDBEndPoints.baseTMDBUrl,
       receiveDataWhenStatusError: true,
       connectTimeout: 60 * 1000, //60 seconds
       receiveTimeout: 60 * 1000,
@@ -30,9 +31,9 @@ class Provider {
 //dio response
   Future<List<dynamic>> getCharacters() async {
     try {
-      Response response = await dio.get(BBEndPoints.allCharacters);
-
-      return response.data;
+      //Response response = await dio.get(BBEndPoints.allCharacters);
+      Response response = await dio.get(TMDBEndPoints.characters);
+      return response.data['cast'];
     } catch (e) {
       print("some Error $e");
       return [];

@@ -16,7 +16,6 @@ class CustomImage extends StatelessWidget {
   });
 
   final String? image;
-
   final double width;
   final double height;
   final BoxFit fit;

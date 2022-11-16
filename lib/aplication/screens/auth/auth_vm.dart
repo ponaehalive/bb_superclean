@@ -19,6 +19,10 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   String password = '';
 
   bool canSubmit = false;
+  bool hidePassword = true;
+   bool isEyeIconActive = false;
+    bool isLoginCorrect = false;
+
 
   bool isAuthorized = false;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -93,7 +97,7 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     notifyListeners();
   }
 
-  void checkFields() {
+ /*  void checkFields() {
     if (login.isNotEmpty && password.isNotEmpty) {
       canSubmit = true;
       notifyListeners();
@@ -101,7 +105,40 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
       canSubmit = false;
       notifyListeners();
     }
+  } */
+
+
+void checkFields() {
+    if (password.isNotEmpty) {
+      isEyeIconActive = true;
+    } else if (password.isEmpty) {
+      isEyeIconActive = false;
+    }
+    if (login.isNotEmpty && password.isNotEmpty) {
+      canSubmit = true;
+      notifyListeners();
+    } else if (login.isEmpty || password.isEmpty) {
+      canSubmit = false;
+      notifyListeners();
+    }
+
+    //can add any logic. emailValidator etc.
+    if (login.length > 5) {
+      isLoginCorrect = true;
+      notifyListeners();
+    } else if (login.length < 5) {
+      isLoginCorrect = false;
+      notifyListeners();
+    }
   }
+
+
+
+
+
+
+
+
 
   Future<void> tryLogin() async {
     _authBloc.add(
@@ -113,7 +150,11 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
   }
 
 
-  
+   void onEyeTap() {
+    hidePassword = !hidePassword;
+    notifyListeners();
+  }
+
 
   void setLocale(context) {
     if (EasyLocalization.of(context)?.locale.countryCode == 'RU') {
