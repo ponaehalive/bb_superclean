@@ -22,6 +22,11 @@ class TMDBEndPoints {
       'tv/1396/aggregate_credits?api_key=65582b30bb06ed4b6267cfd6cb5230a5&language=en-US';
 
   static const String image = 'https://image.tmdb.org/t/p/original';
+
+  static const String episodesOfSeason = 'tv/1396/season/1?api_key=65582b30bb06ed4b6267cfd6cb5230a5';
+
+
+
 }
 //https://image.tmdb.org/t/p/original/f02FFv77Rh62633YEjimv7C6JM3.jpg
 
@@ -36,3 +41,5 @@ class TMDBEndPoints {
 //https://api.themoviedb.org/3/tv/1396/credits?api_key=65582b30bb06ed4b6267cfd6cb5230a5&language=en-US actors
 
 //https://api.themoviedb.org/3/tv/1396/aggregate_credits?api_key=65582b30bb06ed4b6267cfd6cb5230a5&language=en-US   all actors and staff
+
+//https://developers.themoviedb.org/3/people/get-person-external-ids   social networks

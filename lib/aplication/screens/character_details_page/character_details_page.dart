@@ -5,6 +5,7 @@ import 'package:superclean/aplication/ui/themes/app_colors.dart';
 import 'package:superclean/aplication/ui/icons/app_icons.dart';
 import 'package:superclean/aplication/widgets/custom_image/custom_image.dart';
 import 'package:superclean/aplication/widgets/icon_widget.dart';
+import 'package:superclean/domain/services/end_points.dart';
 
 class CharacterDetailsPage extends StatefulWidget {
   const CharacterDetailsPage({Key? key}) : super(key: key);
@@ -39,12 +40,15 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                         ),
                         expandedHeight: 460.0,
                         flexibleSpace: FlexibleSpaceBar(
-                            /*   background: CustomImage(
-                            viewModel.selectedCharacter?.image,
+                          background: CustomImage(
+                            (viewModel.selectedCharacter?.profilePath != null)
+                                ? TMDBEndPoints.image +
+                                    viewModel.selectedCharacter!.profilePath!
+                                : '',
                             height: 95.0,
                             width: 125.0,
-                          ), */
-                            ),
+                          ),
+                        ),
                       ),
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
@@ -64,8 +68,15 @@ class _CharacterDetailsPageState extends State<CharacterDetailsPage> {
                                           const SizedBox(height: 20),
                                           _rowWidget(
                                             label: 'Nick:  ',
-                                            /* labelValue: viewModel
-                                                .selectedCharacter?.nakeName, */
+                                            labelValue: viewModel
+                                                .selectedCharacter
+                                                ?.roles?[0]
+                                                .character,
+                                            
+                                          ),
+                                          const SizedBox(height: 15),
+                                          _rowWidget(
+                                            label: 'Actor:  ',
                                             labelValue: viewModel
                                                 .selectedCharacter?.actorName,
                                           ),

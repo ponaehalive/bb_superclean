@@ -40,7 +40,7 @@ class EpisodeCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: Center(
                   child: Text(
-                    episode.title ?? '',
+                    episode.name ?? '',
                     style: const TextStyle(
                       color: AppColors.white88,
                       fontSize: 16,
@@ -52,7 +52,7 @@ class EpisodeCardWidget extends StatelessWidget {
                 left: 5,
                 top: 5,
                 child: Text(
-                  episode.episodeNumber ?? '',
+                  episode.episodeNumber.toString(),
                   style: const TextStyle(
                     color: AppColors.white88,
                     fontSize: 10,

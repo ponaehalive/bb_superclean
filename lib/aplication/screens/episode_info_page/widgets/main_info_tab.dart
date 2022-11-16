@@ -34,12 +34,12 @@ class _MainInfoTabState extends State<MainInfoTab> {
                           color: AppColors.white,
                         ),
                       ),
-                      Text(
+                   /*    Text(
                         viewModel.selectedEpisode?.season ?? '',
                         style: const TextStyle(
                           color: AppColors.white,
                         ),
-                      ),
+                      ), */
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -51,12 +51,12 @@ class _MainInfoTabState extends State<MainInfoTab> {
                           color: AppColors.white,
                         ),
                       ),
-                      Text(
+                      /* Text(
                         viewModel.selectedEpisode?.episodeNumber ?? '',
                         style: const TextStyle(
                           color: AppColors.white,
                         ),
-                      ),
+                      ), */
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -77,12 +77,12 @@ class _MainInfoTabState extends State<MainInfoTab> {
                     ],
                   ),
                   const SizedBox(height: 40),
-                  Text(
+                  /* Text(
                     viewModel.selectedEpisode?.title ?? '',
                     style: const TextStyle(
                       color: AppColors.white,
                     ),
-                  ),
+                  ), */
                 ],
               ),
             );

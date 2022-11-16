@@ -23,21 +23,22 @@ class EpisodesState {
         loadedBBEpisodes: loadedBBEpisodes ?? this.loadedBBEpisodes,
         isLoadind: isLoadind ?? this.isLoadind,
         selectedEpisode: selectedEpisode ?? this.selectedEpisode,
-        selectedSeasonNumber: selectedSeasonNumber?? this.selectedSeasonNumber,
+        selectedSeasonNumber: selectedSeasonNumber ?? this.selectedSeasonNumber,
       );
 
   static EpisodesState get initial {
     return EpisodesState(
-      loadedBBEpisodes: [],
-      isLoadind: false,
-      selectedEpisode: EpisodeModel(),
-      selectedSeasonNumber: '1'
-    );
+        loadedBBEpisodes: [],
+        isLoadind: false,
+        selectedEpisode: EpisodeModel(),
+        selectedSeasonNumber: '1');
   }
 
-    List<EpisodeModel>? get selectedSeasonEpisodes {
-    return loadedBBEpisodes
+  List<EpisodeModel>? get selectedSeasonEpisodes {
+    return [];
+
+    /*   loadedBBEpisodes
         ?.where((episode) => episode.season == selectedSeasonNumber)
-        .toList();
+        .toList(); */
   }
 }

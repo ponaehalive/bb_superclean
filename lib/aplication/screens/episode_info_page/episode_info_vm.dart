@@ -79,5 +79,6 @@ class EpisodeInfoViewModel extends ChangeNotifier with BaseViewModel {
       'Season ${_episodesBloc.state.selectedSeasonNumber} Episodes';
 
   List<dynamic> get characters =>
-      _episodesBloc.state.selectedEpisode?.characters ?? [];
+     // _episodesBloc.state.selectedEpisode?.characters ?? 
+      [];
 }

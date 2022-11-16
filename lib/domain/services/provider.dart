@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:superclean/domain/services/end_points.dart';
+import 'package:superclean/domain/services/secure_auth_data.dart';
 
 class Provider {
   late Dio dio;
@@ -40,7 +41,25 @@ class Provider {
     }
   }
 
-  Future<List<dynamic>> getAllBBEpisodes() async {
+
+
+   Future<List<dynamic>> getAllBBEpisodes() async {
+
+    final locale = await SecureAuthData().getLocale();
+    try {
+   
+      Response response = await dio.get(TMDBEndPoints.episodesOfSeason, queryParameters: {
+    "language": locale,
+   
+  });
+      return response.data['episodes'];
+    } catch (e) {
+      print("some Error $e");
+      return [];
+    }
+  }
+
+ /*  Future<List<dynamic>> getAllBBEpisodes() async {
     try {
       Response response = await Dio(
         BaseOptions(
@@ -61,7 +80,9 @@ class Provider {
       print("some Error $e");
       return [];
     }
-  }
+  } */
+
+
 
 /*http response
    Future<List<CharacterModel>> getCharactersHttp() async {

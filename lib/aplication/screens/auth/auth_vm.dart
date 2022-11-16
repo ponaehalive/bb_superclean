@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:superclean/aplication/navigation/router.gr.dart';
 import 'package:superclean/domain/bloc/auth/auth_bloc.dart';
 import 'package:superclean/domain/bloc/auth/auth_event.dart';
+import 'package:superclean/domain/services/secure_auth_data.dart';
 import 'package:superclean/src/base_elements/base_view_model.dart';
 
 class AuthViewModel extends ChangeNotifier with BaseViewModel {
@@ -20,9 +21,8 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
 
   bool canSubmit = false;
   bool hidePassword = true;
-   bool isEyeIconActive = false;
-    bool isLoginCorrect = false;
-
+  bool isEyeIconActive = false;
+  bool isLoginCorrect = false;
 
   bool isAuthorized = false;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -50,11 +50,9 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     _appRouter.push(const AutoTabsScaffoldRoute());
   }
 
-  
-
   // TODO: refactor google login/logout to bloc
 
-   Future<void> googleSignIn() async {
+  Future<void> googleSignIn() async {
     final googleSignIn = GoogleSignIn();
     final googleAccount = await googleSignIn.signIn();
     if (googleAccount != null) {
@@ -76,14 +74,14 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
       }
     }
     notifyListeners();
-  } 
+  }
 
-   Future<void> googleLogOut() async {
+  Future<void> googleLogOut() async {
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
     notifyListeners();
-  } 
+  }
 
   void changeLogin(String value) {
     login = loginController.text;
@@ -97,18 +95,7 @@ class AuthViewModel extends ChangeNotifier with BaseViewModel {
     notifyListeners();
   }
 
- /*  void checkFields() {
-    if (login.isNotEmpty && password.isNotEmpty) {
-      canSubmit = true;
-      notifyListeners();
-    } else if (login.isEmpty || password.isEmpty) {
-      canSubmit = false;
-      notifyListeners();
-    }
-  } */
-
-
-void checkFields() {
+  void checkFields() {
     if (password.isNotEmpty) {
       isEyeIconActive = true;
     } else if (password.isEmpty) {
@@ -132,14 +119,6 @@ void checkFields() {
     }
   }
 
-
-
-
-
-
-
-
-
   Future<void> tryLogin() async {
     _authBloc.add(
       LoginEvent(
@@ -149,22 +128,31 @@ void checkFields() {
     );
   }
 
-
-   void onEyeTap() {
+  void onEyeTap() {
     hidePassword = !hidePassword;
     notifyListeners();
   }
 
-
-  void setLocale(context) {
+  void setLocale(context) async {
     if (EasyLocalization.of(context)?.locale.countryCode == 'RU') {
       EasyLocalization.of(context)?.setLocale(
         const Locale('en', 'US'),
       );
+      SecureAuthData()
+          .saveLocale(EasyLocalization.of(context)?.locale.countryCode);
+            print('changed');
+    
+     
     } else {
       EasyLocalization.of(context)?.setLocale(
         const Locale('ru', 'RU'),
       );
+    
+      SecureAuthData()
+          .saveLocale(EasyLocalization.of(context)?.locale.countryCode);
+            print('changed');
+
+    
     }
   }
 

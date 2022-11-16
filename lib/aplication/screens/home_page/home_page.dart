@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomePageViewModel>(
-      create: (_) => viewModel..init(),
+      create: (_) => viewModel..init(context),
       child: viewModel.selector<HomePageViewModel, String>(
         selector: () => viewModel.peremen,
         builder: (ctx, _) {

@@ -1,26 +1,20 @@
 class EpisodeModel {
   int? episodeId;
-  String? title;
-  String? season;
-  String? episodeNumber;
+  int? episodeNumber; 
   String? airDate;
-  List<dynamic>? characters;
+  String? name;
 
   EpisodeModel({
     this.episodeId,
-    this.title,
-    this.season,
-    this.episodeNumber,
+    this.episodeNumber, 
     this.airDate,
-    this.characters,
+    this.name,
   });
 
   EpisodeModel.fromJson(Map<String, dynamic> json) {
-    episodeId = json['episode_id'];
-    title = json['title'];
-    season = json['season'];
-    episodeNumber = json['episode'];
+    episodeId = json['id'];
+    episodeNumber = json['episode_number']; 
     airDate = json['air_date'];
-    characters = json['characters'];
+    name = json['name'];
   }
 }
